@@ -1,0 +1,26 @@
+# 입지 진단 가중치 설정 (Scoring Weights Configuration)
+
+# 1차 공공 API 데이터 가중치 (총합 1.0)
+public_weights:
+  soil_crop_score: 0.25            # 토양/작물 적성 점수
+  agricultural_zone_score: 0.20    # 농업진흥지역 여부 점수
+  actual_farmland_score: 0.15      # 실제 농경지 여부 점수
+  accessibility_score: 0.15         # 접근성 점수
+  drainage_slope_score: 0.10        # 배수/경사/토심 점수
+  geo_environment_score: 0.10       # 지하수/지열/지질환경 보조 점수
+  youth_policy_score: 0.05          # 청년농 지원사업 접근 가능성
+
+# 2차 드론 이미지 분석 데이터 가중치 (총합 1.0)
+drone_weights:
+  vegetation_health_score: 0.25    # 식생 밀도 및 건강 점수
+  moisture_balance_score: 0.20     # 수분 균형 (열화상) 점수
+  field_condition_score: 0.20      # 농지 정리 상태
+  drainage_risk_reverse_score: 0.15  # 배수 위험 역산 점수 (낮을수록 점수 높음)
+  facility_installation_score: 0.10 # 시설(스마트팜 등) 설치 가능성
+  management_difficulty_reverse_score: 0.10 # 관리 난이도 역산 점수 (낮을수록 점수 높음)
+
+# 최종 창농 적합도 가중치 (총합 1.0)
+final_weights:
+  public_api_score: 0.50          # 1차 공공데이터 점수 비율
+  drone_analysis_score: 0.35      # 2차 드론 분석 점수 비율
+  youth_policy_score: 0.15        # 청년 정책 지원 점수 비율
