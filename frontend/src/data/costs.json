@@ -1,0 +1,156 @@
+[
+  {
+    "regionId": "jinju",
+    "cropId": "strawberry",
+    "facilityCostPerPyeong": 88000,
+    "seedlingCostPerPyeong": 13000,
+    "baseOperatingCostPerPyeong": 51000,
+    "laborCostPerPyeong": 15000,
+    "logisticsCostPerPyeong": 5800,
+    "landRentPerPyeongYear": 5200,
+    "equipmentCostBase": 18000000
+  },
+  {
+    "regionId": "damyang",
+    "cropId": "strawberry",
+    "facilityCostPerPyeong": 84000,
+    "seedlingCostPerPyeong": 12500,
+    "baseOperatingCostPerPyeong": 50000,
+    "laborCostPerPyeong": 14500,
+    "logisticsCostPerPyeong": 6200,
+    "landRentPerPyeongYear": 4300,
+    "equipmentCostBase": 17000000
+  },
+  {
+    "regionId": "nonsan",
+    "cropId": "strawberry",
+    "facilityCostPerPyeong": 86000,
+    "seedlingCostPerPyeong": 12800,
+    "baseOperatingCostPerPyeong": 50500,
+    "laborCostPerPyeong": 15200,
+    "logisticsCostPerPyeong": 5400,
+    "landRentPerPyeongYear": 4800,
+    "equipmentCostBase": 17500000
+  },
+  {
+    "regionId": "jinju",
+    "cropId": "tomato",
+    "facilityCostPerPyeong": 79000,
+    "seedlingCostPerPyeong": 9000,
+    "baseOperatingCostPerPyeong": 42000,
+    "laborCostPerPyeong": 13500,
+    "logisticsCostPerPyeong": 5200,
+    "landRentPerPyeongYear": 5200,
+    "equipmentCostBase": 16000000
+  },
+  {
+    "regionId": "nonsan",
+    "cropId": "tomato",
+    "facilityCostPerPyeong": 77000,
+    "seedlingCostPerPyeong": 8900,
+    "baseOperatingCostPerPyeong": 41000,
+    "laborCostPerPyeong": 13200,
+    "logisticsCostPerPyeong": 5000,
+    "landRentPerPyeongYear": 4800,
+    "equipmentCostBase": 15500000
+  },
+  {
+    "regionId": "damyang",
+    "cropId": "tomato",
+    "facilityCostPerPyeong": 76000,
+    "seedlingCostPerPyeong": 8700,
+    "baseOperatingCostPerPyeong": 40500,
+    "laborCostPerPyeong": 12800,
+    "logisticsCostPerPyeong": 5600,
+    "landRentPerPyeongYear": 4300,
+    "equipmentCostBase": 15200000
+  },
+  {
+    "regionId": "goesan",
+    "cropId": "pepper",
+    "facilityCostPerPyeong": 9000,
+    "seedlingCostPerPyeong": 4200,
+    "baseOperatingCostPerPyeong": 11800,
+    "laborCostPerPyeong": 8200,
+    "logisticsCostPerPyeong": 2600,
+    "landRentPerPyeongYear": 3600,
+    "equipmentCostBase": 8500000
+  },
+  {
+    "regionId": "sangju",
+    "cropId": "pepper",
+    "facilityCostPerPyeong": 9500,
+    "seedlingCostPerPyeong": 4100,
+    "baseOperatingCostPerPyeong": 11600,
+    "laborCostPerPyeong": 7800,
+    "logisticsCostPerPyeong": 2800,
+    "landRentPerPyeongYear": 3900,
+    "equipmentCostBase": 8200000
+  },
+  {
+    "regionId": "goesan",
+    "cropId": "mushroom",
+    "facilityCostPerPyeong": 112000,
+    "seedlingCostPerPyeong": 18000,
+    "baseOperatingCostPerPyeong": 47000,
+    "laborCostPerPyeong": 17500,
+    "logisticsCostPerPyeong": 5900,
+    "landRentPerPyeongYear": 3600,
+    "equipmentCostBase": 24000000
+  },
+  {
+    "regionId": "pyeongchang",
+    "cropId": "mushroom",
+    "facilityCostPerPyeong": 118000,
+    "seedlingCostPerPyeong": 18500,
+    "baseOperatingCostPerPyeong": 49000,
+    "laborCostPerPyeong": 18000,
+    "logisticsCostPerPyeong": 6400,
+    "landRentPerPyeongYear": 3100,
+    "equipmentCostBase": 25000000
+  },
+  {
+    "regionId": "sangju",
+    "cropId": "mushroom",
+    "facilityCostPerPyeong": 110000,
+    "seedlingCostPerPyeong": 17800,
+    "baseOperatingCostPerPyeong": 46500,
+    "laborCostPerPyeong": 16800,
+    "logisticsCostPerPyeong": 5700,
+    "landRentPerPyeongYear": 3900,
+    "equipmentCostBase": 23500000
+  },
+  {
+    "regionId": "jinju",
+    "cropId": "leafy-greens",
+    "facilityCostPerPyeong": 180000,
+    "seedlingCostPerPyeong": 9500,
+    "baseOperatingCostPerPyeong": 66000,
+    "laborCostPerPyeong": 19000,
+    "logisticsCostPerPyeong": 7200,
+    "landRentPerPyeongYear": 5200,
+    "equipmentCostBase": 45000000
+  },
+  {
+    "regionId": "nonsan",
+    "cropId": "leafy-greens",
+    "facilityCostPerPyeong": 176000,
+    "seedlingCostPerPyeong": 9300,
+    "baseOperatingCostPerPyeong": 64000,
+    "laborCostPerPyeong": 18800,
+    "logisticsCostPerPyeong": 6800,
+    "landRentPerPyeongYear": 4800,
+    "equipmentCostBase": 43500000
+  },
+  {
+    "regionId": "damyang",
+    "cropId": "leafy-greens",
+    "facilityCostPerPyeong": 178000,
+    "seedlingCostPerPyeong": 9400,
+    "baseOperatingCostPerPyeong": 65000,
+    "laborCostPerPyeong": 18200,
+    "logisticsCostPerPyeong": 7000,
+    "landRentPerPyeongYear": 4300,
+    "equipmentCostBase": 44000000
+  }
+]

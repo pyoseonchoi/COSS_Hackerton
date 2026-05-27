@@ -1,0 +1,9 @@
+{
+  "areaUnit": "pyeong",
+  "defaultAfterTaxSalary": 42000000,
+  "defaultRegionId": "",
+  "initialOperatingCapitalMonths": 6,
+  "rentDepositYears": 2,
+  "minimumDisplayUnit": 10000,
+  "currency": "KRW"
+}

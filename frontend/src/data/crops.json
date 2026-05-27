@@ -1,0 +1,57 @@
+[
+  {
+    "id": "strawberry",
+    "name": "딸기",
+    "type": "시설하우스",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 16,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "높음",
+    "summary": "고소득 작물이지만 수확기 노동과 시설 관리 부담이 큽니다.",
+    "fitTags": ["온난", "딸기", "시설재배"]
+  },
+  {
+    "id": "tomato",
+    "name": "토마토",
+    "type": "시설하우스",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 32,
+    "defaultLossRate": 0.1,
+    "laborIntensity": "높음",
+    "summary": "판로가 잡히면 안정적인 매출을 기대할 수 있는 시설 작물입니다.",
+    "fitTags": ["온난", "시설재배", "일조량 양호"]
+  },
+  {
+    "id": "pepper",
+    "name": "고추",
+    "type": "노지재배",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 5.4,
+    "defaultLossRate": 0.16,
+    "laborIntensity": "높음",
+    "summary": "초기 진입비는 낮지만 같은 소득을 만들려면 넓은 면적이 필요합니다.",
+    "fitTags": ["내륙", "고추", "노지재배"]
+  },
+  {
+    "id": "mushroom",
+    "name": "버섯",
+    "type": "시설재배",
+    "productionCycleMonths": 3,
+    "yieldPerPyeong": 34,
+    "defaultLossRate": 0.11,
+    "laborIntensity": "보통",
+    "summary": "면적 대비 수익성은 높지만 온습도 관리와 판로 확보가 중요합니다.",
+    "fitTags": ["서늘함", "내륙"]
+  },
+  {
+    "id": "leafy-greens",
+    "name": "엽채류",
+    "type": "스마트팜",
+    "productionCycleMonths": 2,
+    "yieldPerPyeong": 22,
+    "defaultLossRate": 0.06,
+    "laborIntensity": "보통",
+    "summary": "생산 안정성은 좋지만 초기 자본과 운영 기술 요구치가 높습니다.",
+    "fitTags": ["시설재배", "일조량 양호"]
+  }
+]

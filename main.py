@@ -1,10 +1,8 @@
 import os
 import json
 import base64
-import numpy as np
-import cv2
-from PIL import Image
-from typing import Dict, Any, List, Optional
+import uvicorn
+from typing import Dict, Any, Optional
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -13,10 +11,6 @@ from pydantic import BaseModel
 
 # 모듈 임포트
 from src.public_data.mock_loader import load_mock_candidates
-from src.drone_analysis.rgb_analysis import analyze_rgb_image
-from src.drone_analysis.thermal_analysis import analyze_thermal_image
-from src.drone_analysis.scoring import calculate_drone_score, calculate_final_score
-from src.recommendation.crop_recommender import recommend_crops
 from src.utils.io import export_result_json
 
 app = FastAPI(
@@ -37,11 +31,20 @@ app.add_middleware(
 # 프로젝트 루트 경로 확보
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(PROJECT_ROOT, "static")
+REACT_BUILD_DIR = os.path.join(STATIC_DIR, "react-app")
+REACT_INDEX_PATH = os.path.join(REACT_BUILD_DIR, "index.html")
+REACT_DASHBOARD_PATH = os.path.join(REACT_BUILD_DIR, "dashboard.html")
 DATA_DIR = os.path.join(PROJECT_ROOT, "data")
 SAMPLE_IMG_DIR = os.path.join(DATA_DIR, "sample_images")
 
 # 기본 이미지 자동 생성 함수 임포트 구동 (app.py에 있던 로직 이관)
 def ensure_sample_images():
+    try:
+        import cv2
+        import numpy as np
+    except ImportError:
+        return False
+
     os.makedirs(SAMPLE_IMG_DIR, exist_ok=True)
     rgb_path = os.path.join(SAMPLE_IMG_DIR, "sample_rgb.png")
     thermal_path = os.path.join(SAMPLE_IMG_DIR, "sample_thermal.png")
@@ -63,20 +66,38 @@ def ensure_sample_images():
         cv2.circle(thermal_img, (480, 150), 60, (230, 230, 230), -1)  # Dry/hot spot
         cv2.imwrite(thermal_path, thermal_img)
 
-ensure_sample_images()
+    return True
 
 # Helper: OpenCV 이미지를 Base64 스트링으로 변환
-def encode_image_to_base64(img_bgr: np.ndarray) -> str:
+def encode_image_to_base64(img_bgr) -> str:
+    import cv2
+
     _, buffer = cv2.imencode('.png', img_bgr)
     return base64.b64encode(buffer).decode('utf-8')
 
-# 루트 주소 접속 시 대시보드 메인 서빙
+# 루트 주소 접속 시 랜딩페이지 서빙
 @app.get("/")
 def read_root():
-    index_path = os.path.join(STATIC_DIR, "index.html")
-    if os.path.exists(index_path):
-        return FileResponse(index_path)
-    return {"message": "FastAPI Server is running. Static UI not found. Please create 'static/index.html'"}
+    if os.path.exists(REACT_INDEX_PATH):
+        return FileResponse(REACT_INDEX_PATH)
+    return {"message": "FastAPI Server is running. React build not found. Run 'npm run build' first."}
+
+# SPA 직접 접속 또는 기존 대시보드 경로 호환
+@app.get("/app")
+def read_dashboard():
+    if os.path.exists(REACT_DASHBOARD_PATH):
+        return FileResponse(REACT_DASHBOARD_PATH)
+    if os.path.exists(REACT_INDEX_PATH):
+        return FileResponse(REACT_INDEX_PATH)
+    return {"message": "FastAPI Server is running. React build not found. Run 'npm run build' first."}
+
+@app.get("/dashboard")
+def read_dashboard_page():
+    if os.path.exists(REACT_DASHBOARD_PATH):
+        return FileResponse(REACT_DASHBOARD_PATH)
+    if os.path.exists(REACT_INDEX_PATH):
+        return FileResponse(REACT_INDEX_PATH)
+    return {"message": "FastAPI Server is running. React build not found. Run 'npm run build' first."}
 
 # 1. 1차 후보 농지 목록 조회 API
 @app.get("/api/candidates")
@@ -95,6 +116,21 @@ async def analyze_drone_data(
     thermal_file: Optional[UploadFile] = File(None),
     use_sample: bool = Form(True)
 ):
+    try:
+        import cv2
+        import numpy as np
+        from src.drone_analysis.rgb_analysis import analyze_rgb_image
+        from src.drone_analysis.thermal_analysis import analyze_thermal_image
+        from src.drone_analysis.scoring import calculate_drone_score, calculate_final_score
+        from src.recommendation.crop_recommender import recommend_crops
+    except ImportError as exc:
+        raise HTTPException(
+            status_code=503,
+            detail=f"Drone analysis dependencies are not installed: {exc}"
+        )
+
+    ensure_sample_images()
+
     # 1. 후보지 정보 로드
     candidates = load_mock_candidates()
     candidate = next((c for c in candidates if c["candidate_id"] == candidate_id), None)

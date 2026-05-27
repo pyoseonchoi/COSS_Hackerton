@@ -1,3 +1,6 @@
+// V-World API Configuration (Optional: Paste your API Key here to enable high-res satellite & cadastral mapping)
+const VWORLD_API_KEY = "";
+
 // State Variables
 let candidates = [];
 let selectedCandidateId = null;
@@ -13,10 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchCandidates();
     setupEventListeners();
     initWeightPieChart();
+    setupPreferenceSliders();
 });
 
 // Setup DOM Event Listeners
 function setupEventListeners() {
+    // Preference Form Submit
+    const prefForm = document.getElementById('preferenceForm');
+    if (prefForm) {
+        prefForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            fetchCandidatesWithPreferences(false);
+        });
+    }
+
     // Candidate Selector Change
     document.getElementById('candidateSelect').addEventListener('change', (e) => {
         selectedCandidateId = e.target.value;
@@ -53,6 +66,20 @@ function setupEventListeners() {
     document.getElementById('downloadJsonBtn').addEventListener('click', () => {
         if (analysisResult) {
             downloadJsonReport(analysisResult);
+        }
+    });
+}
+
+// Live text update for preference range sliders
+function setupPreferenceSliders() {
+    const prefKeys = ['infra', 'education', 'sea', 'nature', 'metropolis', 'land_price', 'subsidy', 'community'];
+    prefKeys.forEach(key => {
+        const slider = document.getElementById(`pref-${key}-slider`);
+        const valSpan = document.getElementById(`val-${key}`);
+        if (slider && valSpan) {
+            slider.addEventListener('input', () => {
+                valSpan.textContent = `${slider.value}점`;
+            });
         }
     });
 }
@@ -94,9 +121,33 @@ function switchImageTab(tabContentId, tabBtn) {
 
 // Fetch Candidates List from FastAPI
 async function fetchCandidates() {
-    showLoader("공공 필지 데이터를 연동하여 지적도를 파싱하고 있습니다...");
+    return fetchCandidatesWithPreferences(true);
+}
+
+async function fetchCandidatesWithPreferences(isInitialLoad = false) {
+    showLoader("공공 필지 데이터를 연동하고 개인 맞춤 선호도를 분석하고 있습니다...");
+    const infraVal = document.getElementById('pref-infra-slider') ? document.getElementById('pref-infra-slider').value : 3;
+    const educationVal = document.getElementById('pref-education-slider') ? document.getElementById('pref-education-slider').value : 3;
+    const seaVal = document.getElementById('pref-sea-slider') ? document.getElementById('pref-sea-slider').value : 3;
+    const natureVal = document.getElementById('pref-nature-slider') ? document.getElementById('pref-nature-slider').value : 3;
+    const metropolisVal = document.getElementById('pref-metropolis-slider') ? document.getElementById('pref-metropolis-slider').value : 3;
+    const landPriceVal = document.getElementById('pref-land_price-slider') ? document.getElementById('pref-land_price-slider').value : 3;
+    const subsidyVal = document.getElementById('pref-subsidy-slider') ? document.getElementById('pref-subsidy-slider').value : 3;
+    const communityVal = document.getElementById('pref-community-slider') ? document.getElementById('pref-community-slider').value : 3;
+    
+    const queryParams = new URLSearchParams({
+        infra: infraVal,
+        education: educationVal,
+        sea: seaVal,
+        nature: natureVal,
+        metropolis: metropolisVal,
+        land_price: landPriceVal,
+        subsidy: subsidyVal,
+        community: communityVal
+    });
+    
     try {
-        const response = await fetch('/api/candidates');
+        const response = await fetch(`/api/candidates?${queryParams.toString()}`);
         if (!response.ok) throw new Error("Failed to fetch candidates");
         
         candidates = await response.json();
@@ -115,11 +166,19 @@ async function fetchCandidates() {
         // Update summary metrics
         document.getElementById('total-candidates').textContent = `${candidates.length} 곳`;
         
-        const avgScore = candidates.reduce((sum, c) => sum + c.public_api_score, 0) / candidates.length;
+        const avgScore = candidates.reduce((sum, c) => sum + (c.personal_preference_score !== undefined ? c.personal_preference_score : c.public_api_score), 0) / candidates.length;
         document.getElementById('avg-public-score').textContent = `${avgScore.toFixed(1)} 점`;
         
-        const excellentCount = candidates.filter(c => c.public_api_score >= 80).length;
+        const excellentCount = candidates.filter(c => (c.personal_preference_score !== undefined ? c.personal_preference_score : c.public_api_score) >= 80).length;
         document.getElementById('excellent-candidates').textContent = `${excellentCount} 곳`;
+        
+        // Navigate to Section 2 (1차 농지 후보) if it's not the initial page load
+        if (!isInitialLoad) {
+            const menuItems = document.querySelectorAll('.menu-item');
+            if (menuItems.length > 1) {
+                switchSection('public-data', menuItems[1]);
+            }
+        }
 
     } catch (error) {
         console.error("Error fetching candidates:", error);
@@ -141,10 +200,11 @@ function populateCandidatesTable(data) {
         // Rating class badge
         let badgeClass = 'badge-good';
         let gradeText = '검토 가능';
-        if (c.public_api_score >= 80) {
+        const score = c.personal_preference_score !== undefined ? c.personal_preference_score : c.public_api_score;
+        if (score >= 80) {
             badgeClass = 'badge-excellent';
             gradeText = '우수';
-        } else if (c.public_api_score < 65) {
+        } else if (score < 65) {
             badgeClass = 'badge-poor';
             gradeText = '보완 필요';
         }
@@ -155,7 +215,8 @@ function populateCandidatesTable(data) {
             <td>${c.address}</td>
             <td>${c.land_type}</td>
             <td>${c.area_m2.toLocaleString()} ㎡</td>
-            <td style="font-weight: 700; color: #fff;">${c.public_api_score.toFixed(1)} 점</td>
+            <td style="font-weight: 500; color: #888;">${c.public_api_score.toFixed(1)} 점</td>
+            <td style="font-weight: 700; color: #fff;">${score.toFixed(1)} 점</td>
             <td><span class="badge ${badgeClass}">${gradeText}</span></td>
         `;
         
@@ -190,7 +251,41 @@ function populateCandidateSelect(data) {
 
 // Initialize Leaflet Map
 function initLeafletMap(data) {
-    if (map !== null) return;
+    if (map !== null) {
+        if (markerGroup) {
+            markerGroup.clearLayers();
+            data.forEach(c => {
+                const score = c.personal_preference_score !== undefined ? c.personal_preference_score : c.public_api_score;
+                const color = score >= 80 ? '#10b981' : (score >= 65 ? '#f59e0b' : '#ef4444');
+                
+                const marker = L.circleMarker([c.lat, c.lng], {
+                    radius: 12,
+                    fillColor: color,
+                    color: '#0b0f19',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(markerGroup);
+                
+                marker.bindPopup(`
+                    <div style="color: #0b0f19; font-family: 'Noto Sans KR'; font-size: 0.85rem;">
+                        <strong>${c.candidate_id}</strong><br>
+                        <span style="font-size:0.75rem; color:#555;">${c.address}</span><br>
+                        <strong>공공 스코어: ${c.public_api_score}점</strong><br>
+                        <strong>맞춤 스코어: ${score}점</strong>
+                    </div>
+                `);
+                
+                marker.on('click', () => {
+                    selectedCandidateId = c.candidate_id;
+                    document.getElementById('candidateSelect').value = c.candidate_id;
+                    updateRadarChart();
+                });
+            });
+            map.fitBounds(markerGroup.getBounds().pad(0.2));
+        }
+        return;
+    }
     
     // Calculate center
     const lats = data.map(c => c.lat);
@@ -198,22 +293,72 @@ function initLeafletMap(data) {
     const centerLat = lats.reduce((a,b)=>a+b, 0) / lats.length;
     const centerLng = lngs.reduce((a,b)=>a+b, 0) / lngs.length;
     
-    // Init Leaflet Map (Light Mode tile style)
+    // Init Leaflet Map
     map = L.map('map').setView([centerLat, centerLng], 7);
     
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    // Base Layers
+    const cartoLight = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd',
         maxZoom: 20
-    }).addTo(map);
+    });
+    
+    let baseMaps = {
+        "기본 다크/라이트 맵": cartoLight
+    };
+    let overlayMaps = {};
+    
+    if (typeof VWORLD_API_KEY !== 'undefined' && VWORLD_API_KEY && VWORLD_API_KEY.trim() !== "") {
+        const vworldBase = L.tileLayer(`https://api.vworld.kr/req/wmts/1.0.0/${VWORLD_API_KEY}/Base/{z}/{y}/{x}.png`, {
+            maxZoom: 19,
+            attribution: '© V-World Base'
+        });
+        
+        const vworldSatellite = L.tileLayer(`https://api.vworld.kr/req/wmts/1.0.0/${VWORLD_API_KEY}/Satellite/{z}/{y}/{x}.jpeg`, {
+            maxZoom: 19,
+            attribution: '© V-World Satellite'
+        });
+        
+        const cadastralLayer = L.tileLayer.wms('https://api.vworld.kr/req/wms', {
+            layers: 'LP_PA_CBND_BUBUN',
+            styles: 'LP_PA_CBND_BUBUN',
+            format: 'image/png',
+            transparent: true,
+            version: '1.3.0',
+            apiKey: VWORLD_API_KEY,
+            attribution: '© V-World 지적도'
+        });
+        
+        const agriZoneLayer = L.tileLayer.wms('https://api.vworld.kr/req/wms', {
+            layers: 'LT_C_UQ111',
+            styles: 'LT_C_UQ111',
+            format: 'image/png',
+            transparent: true,
+            version: '1.3.0',
+            apiKey: VWORLD_API_KEY,
+            attribution: '© V-World 농업진흥지역'
+        });
+        
+        // Add default V-World Base Map
+        vworldBase.addTo(map);
+        
+        baseMaps["브이월드 도로지도"] = vworldBase;
+        baseMaps["브이월드 위성지도"] = vworldSatellite;
+        
+        overlayMaps["연속지적도 경계"] = cadastralLayer;
+        overlayMaps["농업진흥지역 구역"] = agriZoneLayer;
+        
+        L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
+    } else {
+        cartoLight.addTo(map);
+    }
     
     markerGroup = L.featureGroup().addTo(map);
     
     data.forEach(c => {
-        // Decide color based on score
-        const color = c.public_api_score >= 80 ? '#10b981' : (c.public_api_score >= 65 ? '#f59e0b' : '#ef4444');
+        const score = c.personal_preference_score !== undefined ? c.personal_preference_score : c.public_api_score;
+        const color = score >= 80 ? '#10b981' : (score >= 65 ? '#f59e0b' : '#ef4444');
         
-        // Create circle marker
         const marker = L.circleMarker([c.lat, c.lng], {
             radius: 12,
             fillColor: color,
@@ -224,14 +369,14 @@ function initLeafletMap(data) {
         }).addTo(markerGroup);
         
         marker.bindPopup(`
-            <div style="color: #0b0f19; font-family: 'Noto Sans KR';">
+            <div style="color: #0b0f19; font-family: 'Noto Sans KR'; font-size: 0.85rem;">
                 <strong>${c.candidate_id}</strong><br>
-                <span>${c.address}</span><br>
-                <strong>점수: ${c.public_api_score}점</strong>
+                <span style="font-size:0.75rem; color:#555;">${c.address}</span><br>
+                <strong>공공 스코어: ${c.public_api_score}점</strong><br>
+                <strong>맞춤 스코어: ${score}점</strong>
             </div>
         `);
         
-        // Add click listener
         marker.on('click', () => {
             selectedCandidateId = c.candidate_id;
             document.getElementById('candidateSelect').value = c.candidate_id;
@@ -322,6 +467,16 @@ async function runDroneAnalysis() {
     const formData = new FormData();
     formData.append('candidate_id', selectedCandidateId);
     formData.append('use_sample', useSample);
+    
+    // Append preference slider values
+    formData.append('infra', document.getElementById('pref-infra-slider') ? document.getElementById('pref-infra-slider').value : 3);
+    formData.append('education', document.getElementById('pref-education-slider') ? document.getElementById('pref-education-slider').value : 3);
+    formData.append('sea', document.getElementById('pref-sea-slider') ? document.getElementById('pref-sea-slider').value : 3);
+    formData.append('nature', document.getElementById('pref-nature-slider') ? document.getElementById('pref-nature-slider').value : 3);
+    formData.append('metropolis', document.getElementById('pref-metropolis-slider') ? document.getElementById('pref-metropolis-slider').value : 3);
+    formData.append('land_price', document.getElementById('pref-land_price-slider') ? document.getElementById('pref-land_price-slider').value : 3);
+    formData.append('subsidy', document.getElementById('pref-subsidy-slider') ? document.getElementById('pref-subsidy-slider').value : 3);
+    formData.append('community', document.getElementById('pref-community-slider') ? document.getElementById('pref-community-slider').value : 3);
     
     if (rgbInput.files.length > 0) {
         formData.append('rgb_file', rgbInput.files[0]);
@@ -455,6 +610,7 @@ function setupFinalRecommendation(result) {
     // Metric numbers
     document.getElementById('final-overall-score').textContent = `${result.final_startup_suitability.toFixed(1)} 점`;
     document.getElementById('final-public-score').textContent = `${result.public_api_score.toFixed(1)} 점`;
+    document.getElementById('final-pref-score').textContent = `${(result.personal_preference_score !== undefined ? result.personal_preference_score : 0).toFixed(1)} 점`;
     document.getElementById('final-drone-score').textContent = `${result.drone_analysis_score.toFixed(1)} 점`;
     document.getElementById('final-policy-score').textContent = `${result.analysis.public_data.youth_policy_score.toFixed(1)} 점`;
 
@@ -495,11 +651,12 @@ function initWeightPieChart() {
     weightPieChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ["1차 공공데이터 (50%)", "2차 드론 분석 (35%)", "청년 정책 지원 (15%)"],
+            labels: ["1차 공공데이터 (40%)", "개인 선호 맞춤 (20%)", "2차 드론 분석 (25%)", "청년 정책 지원 (15%)"],
             datasets: [{
-                data: [50, 35, 15],
+                data: [40, 20, 25, 15],
                 backgroundColor: [
                     '#10b981',
+                    '#06b6d4',
                     '#3b82f6',
                     '#f59e0b'
                 ],

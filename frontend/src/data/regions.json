@@ -1,0 +1,56 @@
+[
+  {
+    "id": "jinju",
+    "name": "경남 진주",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 1.08,
+    "climateTags": ["온난", "시설재배", "일조량 양호"],
+    "risks": ["여름 고온", "시설 냉방비"]
+  },
+  {
+    "id": "damyang",
+    "name": "전남 담양",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 0.98,
+    "landRentIndex": 0.96,
+    "climateTags": ["온난", "딸기", "시설재배"],
+    "risks": ["장마철 과습", "병해충"]
+  },
+  {
+    "id": "goesan",
+    "name": "충북 괴산",
+    "logisticsCostIndex": 1.08,
+    "laborCostIndex": 0.94,
+    "landRentIndex": 0.88,
+    "climateTags": ["내륙", "고추", "노지재배"],
+    "risks": ["한파", "가격 변동"]
+  },
+  {
+    "id": "pyeongchang",
+    "name": "강원 평창",
+    "logisticsCostIndex": 1.18,
+    "laborCostIndex": 1,
+    "landRentIndex": 0.82,
+    "climateTags": ["고랭지", "서늘함", "일교차"],
+    "risks": ["겨울 한파", "난방비"]
+  },
+  {
+    "id": "nonsan",
+    "name": "충남 논산",
+    "logisticsCostIndex": 0.92,
+    "laborCostIndex": 1.04,
+    "landRentIndex": 1.02,
+    "climateTags": ["딸기", "시설재배", "유통 인프라"],
+    "risks": ["시설 투자 부담", "노동 집중"]
+  },
+  {
+    "id": "sangju",
+    "name": "경북 상주",
+    "logisticsCostIndex": 1.05,
+    "laborCostIndex": 0.96,
+    "landRentIndex": 0.9,
+    "climateTags": ["과수", "노지", "내륙"],
+    "risks": ["서리", "수확기 인력"]
+  }
+]

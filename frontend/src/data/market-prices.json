@@ -1,0 +1,16 @@
+[
+  { "regionId": "jinju", "cropId": "strawberry", "salePricePerKg": 7600, "salesChannel": "공판장/직거래 혼합", "baseDate": "2026-05" },
+  { "regionId": "damyang", "cropId": "strawberry", "salePricePerKg": 7900, "salesChannel": "지역 브랜드/직거래", "baseDate": "2026-05" },
+  { "regionId": "nonsan", "cropId": "strawberry", "salePricePerKg": 7800, "salesChannel": "공판장/브랜드 출하", "baseDate": "2026-05" },
+  { "regionId": "jinju", "cropId": "tomato", "salePricePerKg": 3300, "salesChannel": "공판장", "baseDate": "2026-05" },
+  { "regionId": "nonsan", "cropId": "tomato", "salePricePerKg": 3200, "salesChannel": "공판장", "baseDate": "2026-05" },
+  { "regionId": "damyang", "cropId": "tomato", "salePricePerKg": 3100, "salesChannel": "공판장", "baseDate": "2026-05" },
+  { "regionId": "goesan", "cropId": "pepper", "salePricePerKg": 6900, "salesChannel": "건고추/직거래", "baseDate": "2026-05" },
+  { "regionId": "sangju", "cropId": "pepper", "salePricePerKg": 6700, "salesChannel": "건고추/공판장", "baseDate": "2026-05" },
+  { "regionId": "goesan", "cropId": "mushroom", "salePricePerKg": 4300, "salesChannel": "도매/식자재", "baseDate": "2026-05" },
+  { "regionId": "pyeongchang", "cropId": "mushroom", "salePricePerKg": 4500, "salesChannel": "도매/식자재", "baseDate": "2026-05" },
+  { "regionId": "sangju", "cropId": "mushroom", "salePricePerKg": 4200, "salesChannel": "도매/식자재", "baseDate": "2026-05" },
+  { "regionId": "jinju", "cropId": "leafy-greens", "salePricePerKg": 3900, "salesChannel": "계약재배/로컬푸드", "baseDate": "2026-05" },
+  { "regionId": "nonsan", "cropId": "leafy-greens", "salePricePerKg": 3700, "salesChannel": "계약재배/로컬푸드", "baseDate": "2026-05" },
+  { "regionId": "damyang", "cropId": "leafy-greens", "salePricePerKg": 3800, "salesChannel": "계약재배/로컬푸드", "baseDate": "2026-05" }
+]

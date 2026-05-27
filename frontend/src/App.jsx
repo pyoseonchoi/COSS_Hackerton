@@ -1,0 +1,633 @@
+import { useEffect, useMemo, useState } from 'react';
+import {
+  AlertTriangle,
+  ArrowLeft,
+  CheckCircle2,
+  CircleDollarSign,
+  Download,
+  Image as ImageIcon,
+  LandPlot,
+  MapPin,
+  Play,
+  TrendingUp,
+  Upload
+} from 'lucide-react';
+import { defaultInputs, regions } from './data/agricultureData';
+import { Sidebar } from './components/Sidebar';
+import { SectionHeader } from './components/SectionHeader';
+import { ScoreBar } from './components/ScoreBar';
+import { Metric } from './components/Metric';
+import { buildInvestmentOptions } from './utils/calculations';
+import { formatNumber, formatPyeong, formatWon } from './utils/formatters';
+import { analyzeDroneImages, getCandidates } from './services/api';
+
+const landingHref = import.meta.env.DEV ? import.meta.env.BASE_URL : '/';
+
+const preferenceDefaults = {
+  infra: 4,
+  education: 3,
+  sea: 2,
+  nature: 5,
+  metropolis: 3,
+  landPrice: 4,
+  subsidy: 5,
+  community: 4
+};
+
+const preferenceLabels = [
+  ['infra', '생활 인프라', '병원, 마트, 교통 등 정주 여건'],
+  ['education', '교육 접근성', '자녀 교육과 학습 시설'],
+  ['sea', '해안 접근성', '바다 인접 생활 선호'],
+  ['nature', '자연 환경', '조용하고 넓은 농촌 환경'],
+  ['metropolis', '대도시 접근성', '도시권 이동 편의성'],
+  ['landPrice', '낮은 농지 비용', '초기 투자비 절감'],
+  ['subsidy', '지원사업', '청년농 지원금과 지자체 정책'],
+  ['community', '지역 커뮤니티', '귀농인 네트워크와 정착 지원']
+];
+
+const publicScoreLabels = {
+  soil_crop_score: '토양/작물 적성',
+  agricultural_zone_score: '농업진흥지역',
+  actual_farmland_score: '실제 농경지',
+  accessibility_score: '접근성',
+  drainage_slope_score: '배수/경사',
+  geo_environment_score: '지하수/지질',
+  youth_policy_score: '청년정책'
+};
+
+export default function App() {
+  const [activeSection, setActiveSection] = useState('income');
+  const [inputs, setInputs] = useState(defaultInputs);
+  const [preferences, setPreferences] = useState(preferenceDefaults);
+  const [candidates, setCandidates] = useState([]);
+  const [selectedCandidateId, setSelectedCandidateId] = useState('');
+  const [candidateStatus, setCandidateStatus] = useState('loading');
+  const [droneForm, setDroneForm] = useState({ rgbFile: null, thermalFile: null, useSample: true });
+  const [analysisResult, setAnalysisResult] = useState(null);
+  const [analysisError, setAnalysisError] = useState('');
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+  const selectedRegion = regions.find((region) => region.id === inputs.regionId);
+  const options = useMemo(() => buildInvestmentOptions(inputs), [inputs]);
+  const primaryPlan = options[0];
+  const targetMonthlyIncome = Number(inputs.afterTaxSalary) / 12;
+  const selectedCandidate = candidates.find((candidate) => candidate.candidate_id === selectedCandidateId) ?? candidates[0];
+  const recommendedCandidate = useMemo(
+    () => rankCandidates(candidates, preferences)[0],
+    [candidates, preferences]
+  );
+
+  useEffect(() => {
+    let isMounted = true;
+    getCandidates()
+      .then((items) => {
+        if (!isMounted) return;
+        setCandidates(items);
+        setSelectedCandidateId(items[0]?.candidate_id ?? '');
+        setCandidateStatus('ready');
+      })
+      .catch(() => {
+        if (!isMounted) return;
+        setCandidateStatus('error');
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  function updateInput(name, value) {
+    setInputs((current) => ({
+      ...current,
+      [name]: name === 'afterTaxSalary' ? Number(value) : value
+    }));
+  }
+
+  function updatePreference(name, value) {
+    setPreferences((current) => ({
+      ...current,
+      [name]: Number(value)
+    }));
+  }
+
+  async function handleDroneSubmit(event) {
+    event.preventDefault();
+    if (!selectedCandidate) return;
+    setIsAnalyzing(true);
+    setAnalysisError('');
+
+    try {
+      const result = await analyzeDroneImages({
+        candidateId: selectedCandidate.candidate_id,
+        rgbFile: droneForm.rgbFile,
+        thermalFile: droneForm.thermalFile,
+        useSample: droneForm.useSample
+      });
+      setAnalysisResult(result);
+      setActiveSection('final');
+    } catch (error) {
+      setAnalysisError(error.message);
+    } finally {
+      setIsAnalyzing(false);
+    }
+  }
+
+  function downloadFinalJson() {
+    const report = {
+      income: primaryPlan,
+      preferences,
+      candidate: selectedCandidate,
+      droneAnalysis: analysisResult,
+      generatedAt: new Date().toISOString()
+    };
+    const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `farm_recommendation_${selectedCandidate?.candidate_id ?? 'result'}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
+  return (
+    <div className="dashboardShell">
+      <Sidebar activeSection={activeSection} onSectionChange={setActiveSection} />
+
+      <main className="dashboardMain">
+        <TopBar />
+
+        {activeSection === 'income' && (
+          <IncomeSection
+            inputs={inputs}
+            selectedRegion={selectedRegion}
+            options={options}
+            primaryPlan={primaryPlan}
+            targetMonthlyIncome={targetMonthlyIncome}
+            onInputChange={updateInput}
+          />
+        )}
+
+        {activeSection === 'preferences' && (
+          <PreferenceSection
+            preferences={preferences}
+            recommendedCandidate={recommendedCandidate}
+            onPreferenceChange={updatePreference}
+            onNext={() => setActiveSection('candidates')}
+          />
+        )}
+
+        {activeSection === 'candidates' && (
+          <CandidateSection
+            status={candidateStatus}
+            candidates={rankCandidates(candidates, preferences)}
+            selectedCandidateId={selectedCandidateId}
+            onSelect={setSelectedCandidateId}
+            onNext={() => setActiveSection('drone')}
+          />
+        )}
+
+        {activeSection === 'drone' && (
+          <DroneSection
+            selectedCandidate={selectedCandidate}
+            droneForm={droneForm}
+            analysisResult={analysisResult}
+            analysisError={analysisError}
+            isAnalyzing={isAnalyzing}
+            onFormChange={setDroneForm}
+            onSubmit={handleDroneSubmit}
+          />
+        )}
+
+        {activeSection === 'final' && (
+          <FinalSection
+            primaryPlan={primaryPlan}
+            selectedCandidate={selectedCandidate}
+            recommendedCandidate={recommendedCandidate}
+            preferences={preferences}
+            analysisResult={analysisResult}
+            onDownload={downloadFinalJson}
+          />
+        )}
+      </main>
+    </div>
+  );
+}
+
+function TopBar() {
+  return (
+    <header className="dashboardTopbar">
+      <div>
+        <p className="eyebrow">COSS Hackerton MVP</p>
+        <h1>귀농 소득·입지 통합 진단</h1>
+      </div>
+      <a href={landingHref} className="ghostButton">
+        <ArrowLeft size={16} />
+        랜딩으로
+      </a>
+    </header>
+  );
+}
+
+function IncomeSection({ inputs, selectedRegion, options, primaryPlan, targetMonthlyIncome, onInputChange }) {
+  const isInvalidSalary = !Number.isFinite(targetMonthlyIncome) || targetMonthlyIncome <= 0;
+
+  return (
+    <section className="dashboardSection">
+      <SectionHeader
+        eyebrow="Step 01"
+        title="현재 세후소득을 농업 소득으로 대체하기"
+        description="세후 연봉과 지역을 입력하면 같은 월 순이익을 만들기 위한 최소 초기비용 조합을 계산합니다."
+      />
+
+      <div className="twoColumn">
+        <div className="glassCard">
+          <div className="cardTitle">현재 조건</div>
+          <NumberField
+            label="세후 연봉"
+            value={inputs.afterTaxSalary}
+            step="1000000"
+            onChange={(value) => onInputChange('afterTaxSalary', value)}
+          />
+          <label className="field">
+            <span>지역 선택</span>
+            <select value={inputs.regionId} onChange={(event) => onInputChange('regionId', event.target.value)}>
+              <option value="">지역 선택 안 함 · 전국 최저비용</option>
+              {regions.map((region) => (
+                <option value={region.id} key={region.id}>
+                  {region.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <div className="dataGuide">
+            <strong>계산 데이터</strong>
+            <span>지역, 작물, 판매가격, 비용, 설정값을 JSON으로 분리해 관리합니다.</span>
+          </div>
+        </div>
+
+        <div className="glassCard">
+          <div className="cardTitle">계산 요약</div>
+          {isInvalidSalary || !primaryPlan ? (
+            <div className="emptyState">세후 연봉을 0보다 큰 값으로 입력해 주세요.</div>
+          ) : (
+            <>
+              <div className="summaryTiles">
+                <Metric icon={<CircleDollarSign />} label="목표 월 순이익" value={formatWon(targetMonthlyIncome)} />
+                <Metric icon={<TrendingUp />} label="예상 월 매출" value={formatWon(primaryPlan.monthlyRevenue)} />
+                <Metric icon={<LandPlot />} label="필요 규모" value={formatPyeong(primaryPlan.requiredArea)} />
+              </div>
+              <div className="highlightResult">
+                <span>최소비용 조합</span>
+                <strong>{primaryPlan.region.name} · {primaryPlan.crop.name}</strong>
+                <em>{formatWon(primaryPlan.minimumInitialCost)}</em>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
+      <div className="optionGrid">
+        {options.slice(0, 4).map((option) => (
+          <InvestmentCard key={`${option.region.id}-${option.crop.id}`} option={option} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function PreferenceSection({ preferences, recommendedCandidate, onPreferenceChange, onNext }) {
+  return (
+    <section className="dashboardSection">
+      <SectionHeader
+        eyebrow="Step 02"
+        title="개인 맞춤형 입지 선호도 설정"
+        description="원본 UI의 8대 입지 요인을 React 상태로 옮겼습니다. 값은 후보지 추천 점수 보정에 사용됩니다."
+      />
+
+      <div className="twoColumn">
+        <div className="glassCard">
+          <div className="cardTitle">8대 입지 요인</div>
+          <div className="preferenceGrid">
+            {preferenceLabels.map(([key, label, help]) => (
+              <label key={key} className="rangeField">
+                <div>
+                  <strong>{label}</strong>
+                  <span>{help}</span>
+                </div>
+                <output>{preferences[key]}점</output>
+                <input
+                  type="range"
+                  min="1"
+                  max="5"
+                  value={preferences[key]}
+                  onChange={(event) => onPreferenceChange(key, event.target.value)}
+                />
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div className="glassCard recommendationPanel">
+          <div className="cardTitle">선호도 반영 추천</div>
+          {recommendedCandidate ? (
+            <>
+              <strong>{recommendedCandidate.address}</strong>
+              <p>{recommendedCandidate.region} · {recommendedCandidate.land_type}</p>
+              <ScoreBar label="선호도 보정 점수" value={recommendedCandidate.adjustedScore} />
+              <ScoreBar label="공공 데이터 점수" value={recommendedCandidate.public_api_score} />
+              <button type="button" className="primaryButton" onClick={onNext}>
+                후보지 보기
+              </button>
+            </>
+          ) : (
+            <div className="emptyState">후보지 데이터를 불러오는 중입니다.</div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CandidateSection({ status, candidates, selectedCandidateId, onSelect, onNext }) {
+  const selected = candidates.find((candidate) => candidate.candidate_id === selectedCandidateId) ?? candidates[0];
+
+  return (
+    <section className="dashboardSection">
+      <SectionHeader
+        eyebrow="Step 03"
+        title="1차 농지 후보지 탐색"
+        description="원본의 지도/레이더 차트를 안정적인 카드와 점수바 UI로 React화했습니다."
+      />
+
+      {status === 'error' && (
+        <div className="noticeCard warning">
+          <AlertTriangle size={18} />
+          후보지 API 응답이 없어 로컬 목데이터를 사용합니다.
+        </div>
+      )}
+
+      <div className="candidateLayout">
+        <div className="candidateList">
+          {candidates.map((candidate) => (
+            <button
+              type="button"
+              key={candidate.candidate_id}
+              className={candidate.candidate_id === selected?.candidate_id ? 'candidateCard active' : 'candidateCard'}
+              onClick={() => onSelect(candidate.candidate_id)}
+            >
+              <span>{candidate.candidate_id}</span>
+              <strong>{candidate.region}</strong>
+              <em>{candidate.address}</em>
+              <small>{candidate.land_type} · {candidate.area_m2.toLocaleString('ko-KR')}㎡</small>
+            </button>
+          ))}
+        </div>
+
+        <div className="glassCard">
+          <div className="cardTitle">후보지 상세 평가</div>
+          {selected ? (
+            <>
+              <div className="candidateHero">
+                <div>
+                  <span>{selected.candidate_id}</span>
+                  <strong>{selected.address}</strong>
+                </div>
+                <b>{Number(selected.adjustedScore ?? selected.public_api_score).toFixed(1)}점</b>
+              </div>
+              <div className="scoreList">
+                {Object.entries(publicScoreLabels).map(([key, label]) => (
+                  <ScoreBar key={key} label={label} value={selected[key]} />
+                ))}
+              </div>
+              <button type="button" className="primaryButton" onClick={onNext}>
+                이 후보지로 드론 분석
+              </button>
+            </>
+          ) : (
+            <div className="emptyState">후보지를 불러오는 중입니다.</div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DroneSection({ selectedCandidate, droneForm, analysisResult, analysisError, isAnalyzing, onFormChange, onSubmit }) {
+  return (
+    <section className="dashboardSection">
+      <SectionHeader
+        eyebrow="Step 04"
+        title="2차 미시 드론 영상 분석"
+        description="RGB/열화상 업로드 UI를 React 폼으로 옮겼습니다. 분석 API가 준비되지 않아도 화면이 깨지지 않습니다."
+      />
+
+      <div className="twoColumn">
+        <form className="glassCard uploadPanel" onSubmit={onSubmit}>
+          <div className="cardTitle">원격 탐사 데이터 업로드</div>
+          <div className="selectedLand">
+            <MapPin size={18} />
+            <span>{selectedCandidate ? selectedCandidate.address : '후보지를 먼저 선택하세요'}</span>
+          </div>
+
+          <FileField
+            label="드론 RGB 이미지"
+            file={droneForm.rgbFile}
+            onChange={(file) => onFormChange((current) => ({ ...current, rgbFile: file }))}
+          />
+          <FileField
+            label="드론 열화상 이미지"
+            file={droneForm.thermalFile}
+            onChange={(file) => onFormChange((current) => ({ ...current, thermalFile: file }))}
+          />
+
+          <label className="checkField">
+            <input
+              type="checkbox"
+              checked={droneForm.useSample}
+              onChange={(event) => onFormChange((current) => ({ ...current, useSample: event.target.checked }))}
+            />
+            업로드 파일이 없을 때 샘플 이미지 사용
+          </label>
+
+          <button type="submit" className="primaryButton" disabled={isAnalyzing || !selectedCandidate}>
+            <Play size={17} />
+            {isAnalyzing ? '분석 중...' : '드론 분석 실행'}
+          </button>
+        </form>
+
+        <div className="glassCard">
+          <div className="cardTitle">분석 결과</div>
+          {analysisError && (
+            <div className="noticeCard warning">
+              <AlertTriangle size={18} />
+              {analysisError}
+            </div>
+          )}
+          {analysisResult ? (
+            <DroneResult result={analysisResult} />
+          ) : (
+            <div className="emptyState">
+              이미지 분석을 실행하면 식생, 수분, 배수, 시설 설치 가능성 지표가 표시됩니다.
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FinalSection({ primaryPlan, selectedCandidate, recommendedCandidate, preferences, analysisResult, onDownload }) {
+  const candidate = selectedCandidate ?? recommendedCandidate;
+  const finalScore = calculateFinalScore(candidate, analysisResult);
+
+  return (
+    <section className="dashboardSection">
+      <SectionHeader
+        eyebrow="Step 05"
+        title="최종 창농 적합도 및 추천 결과"
+        description="소득 대체 계산과 원본 입지 진단 흐름을 한 화면에서 종합합니다."
+      />
+
+      <div className="resultBanner">
+        <div>
+          <span>최종 추천</span>
+          <h2>{primaryPlan ? `${primaryPlan.region.name} · ${primaryPlan.crop.name}` : '계산 결과 없음'}</h2>
+          <p>
+            {candidate
+              ? `${candidate.address} 후보지를 기준으로 검토합니다.`
+              : '후보지 데이터를 불러온 뒤 최종 추천이 표시됩니다.'}
+          </p>
+        </div>
+        <strong>{finalScore.toFixed(1)}점</strong>
+      </div>
+
+      <div className="summaryTiles finalTiles">
+        <Metric icon={<CircleDollarSign />} label="필요 초기비용" value={primaryPlan ? formatWon(primaryPlan.minimumInitialCost) : '-'} />
+        <Metric icon={<LandPlot />} label="필요 재배면적" value={primaryPlan ? formatPyeong(primaryPlan.requiredArea) : '-'} />
+        <Metric icon={<MapPin />} label="후보지 공공점수" value={candidate ? `${candidate.public_api_score}점` : '-'} />
+        <Metric
+          icon={<CheckCircle2 />}
+          label="선호도 평균"
+          value={`${(Object.values(preferences).reduce((sum, value) => sum + value, 0) / Object.values(preferences).length).toFixed(1)}점`}
+        />
+      </div>
+
+      <div className="twoColumn">
+        <div className="glassCard">
+          <div className="cardTitle">추천 근거</div>
+          <ul className="cleanList">
+            <li>현재 세후소득을 기준으로 필요한 월 순이익을 먼저 계산했습니다.</li>
+            <li>지역별 판매가격, 운영비, 시설비를 반영해 최소 초기비용 조합을 선택했습니다.</li>
+            <li>원본 후보지 공공데이터 점수와 개인 선호도 가중치를 함께 참고합니다.</li>
+            <li>드론 분석 결과가 있으면 최종 점수에 보정 반영합니다.</li>
+          </ul>
+        </div>
+
+        <div className="glassCard">
+          <div className="cardTitle">리포트 내보내기</div>
+          <p className="mutedText">현재 계산 조건, 후보지, 선호도, 드론 분석 결과를 JSON으로 내려받을 수 있습니다.</p>
+          <button type="button" className="primaryButton" onClick={onDownload}>
+            <Download size={17} />
+            최종 리포트 JSON 다운로드
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function InvestmentCard({ option }) {
+  return (
+    <article className="investmentCard">
+      <span>{option.region.name}</span>
+      <strong>{option.crop.name}</strong>
+      <p>{option.crop.summary}</p>
+      <div>
+        <b>{formatWon(option.minimumInitialCost)}</b>
+        <small>초기 투자비</small>
+      </div>
+      <div className="miniStats">
+        <span>{formatPyeong(option.requiredArea)}</span>
+        <span>{formatWon(option.monthlyNetProfit)} / 월</span>
+      </div>
+    </article>
+  );
+}
+
+function DroneResult({ result }) {
+  const details = result.analysis?.drone_data ?? {};
+
+  return (
+    <div className="droneResult">
+      <div className="candidateHero">
+        <div>
+          <span>{result.candidate_id}</span>
+          <strong>{result.suitability_grade}</strong>
+        </div>
+        <b>{Number(result.final_startup_suitability || 0).toFixed(1)}점</b>
+      </div>
+      <div className="scoreList">
+        <ScoreBar label="식생 건강도" value={details.vegetation_health_score} />
+        <ScoreBar label="수분 균형도" value={details.moisture_balance_score} />
+        <ScoreBar label="농지 정리상태" value={details.field_condition_score} />
+        <ScoreBar label="배수 안전도" value={details.drainage_risk_reverse_score} />
+        <ScoreBar label="시설 설치 가능성" value={details.facility_installation_score} />
+      </div>
+      {result.images && (
+        <div className="imagePreviewGrid">
+          <img src={result.images.rgb_visualized} alt="RGB 분석 결과" />
+          <img src={result.images.thermal_visualized} alt="열화상 분석 결과" />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function FileField({ label, file, onChange }) {
+  return (
+    <label className="fileField">
+      <span>
+        <Upload size={17} />
+        {label}
+      </span>
+      <input type="file" accept="image/*" onChange={(event) => onChange(event.target.files?.[0] ?? null)} />
+      <em>
+        <ImageIcon size={16} />
+        {file ? file.name : '파일 선택 또는 샘플 사용'}
+      </em>
+    </label>
+  );
+}
+
+function NumberField({ label, value, step, onChange }) {
+  return (
+    <label className="field">
+      <span>{label}</span>
+      <input type="number" min="0" step={step} value={value} onChange={(event) => onChange(event.target.value)} />
+    </label>
+  );
+}
+
+function rankCandidates(candidates, preferences) {
+  const preferenceBoost =
+    preferences.infra * 0.8 +
+    preferences.education * 0.3 +
+    preferences.nature * 0.6 +
+    preferences.landPrice * 0.9 +
+    preferences.subsidy * 1.1 +
+    preferences.community * 0.5 -
+    preferences.sea * 0.2 -
+    preferences.metropolis * 0.1;
+
+  return candidates
+    .map((candidate) => ({
+      ...candidate,
+      adjustedScore: Math.min(100, candidate.public_api_score + preferenceBoost)
+    }))
+    .sort((a, b) => b.adjustedScore - a.adjustedScore);
+}
+
+function calculateFinalScore(candidate, analysisResult) {
+  const publicScore = Number(candidate?.public_api_score ?? 70);
+  const droneScore = Number(analysisResult?.drone_analysis_score ?? publicScore);
+  return publicScore * 0.55 + droneScore * 0.35 + 8;
+}

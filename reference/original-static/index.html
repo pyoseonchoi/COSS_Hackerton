@@ -9,7 +9,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <!-- Custom Style CSS -->
-    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/style.css?v=2" />
 </head>
 <body>
 
@@ -24,7 +24,7 @@
             
             <ul class="sidebar-menu">
                 <li class="menu-item active" onclick="switchSection('overview', this)">
-                    <i class="fa-solid fa-circle-info"></i>1. 프로젝트 개요
+                    <i class="fa-solid fa-sliders"></i>1. 개인 선호도 설정
                 </li>
                 <li class="menu-item" onclick="switchSection('public-data', this)">
                     <i class="fa-solid fa-map-location-dot"></i>2. 1차 농지 후보 (공공)
@@ -46,62 +46,145 @@
         <!-- 2. 메인 컨텐츠 영역 -->
         <main class="main-content">
             
-            <!-- SECTION 1: 프로젝트 개요 -->
+            <!-- SECTION 1: 개인 선호도 설정 -->
             <section id="overview" class="content-section active">
-                <div class="main-title">AI·드론 기반 청년 농업 창업 입지 진단 시스템</div>
-                <div class="sub-title">Balanced Regional Development & Youth Agriculture Settlement Solution</div>
+                <div class="main-title">개인 맞춤형 입지 선호도 설정</div>
+                <div class="sub-title">귀농 지역 추천에 반영할 개인의 성향과 환경 취향 가중치를 선택하세요. (1~5점 척도)</div>
                 
-                <div class="layout-split">
-                    <div>
-                        <div class="section-header">프로젝트 배경 및 목적</div>
-                        <div class="glass-card" style="margin-bottom: 1.5rem;">
-                            <p style="margin-bottom: 1rem;">
-                                대한민국의 <strong>지방 소멸</strong>과 <strong>청년 인구 유출</strong>은 국가 균형 발전을 가로막는 주요 과제입니다. 정부 및 각 지자체에서 다양한 청년농 지원 정책을 펴고 있으나, 여전히 현장에 정착하고자 하는 청년 농부들은 다음과 같은 핵심 문제에 봉착해 있습니다.
-                            </p>
-                            <ul style="padding-left: 20px; margin-bottom: 1rem; display: flex; flex-direction: column; gap: 8px;">
-                                <li><strong>농지 정보 부족:</strong> 경사도, 접근성, 용수 등 산재한 공공 농지 속성을 한곳에서 파악하기 힘듭니다.</li>
-                                <li><strong>초기 창업 실패 리스크:</strong> 필지 상태(배수, 토양 등)를 면밀히 점검하지 못하고 무리하게 시설(스마트팜 등)을 유치하여 파산하는 사례가 많습니다.</li>
-                                <li><strong>미시적 실시간 데이터 한계:</strong> 위성 지도 정보로는 실제 수분 분포 상태나 방치된 흔적을 감지하기 어렵습니다.</li>
-                            </ul>
-                            <p>
-                                따라서 본 시스템은 <strong>1차 공공 데이터 기반 광역 필터링</strong>과 <strong>2차 드론 항공 영상(RGB/열화상) 정밀 진단</strong>을 결합해 창농 적합도를 과학적으로 스코어링하고 작물 및 관련 정책을 매핑하는 입지 분석 솔루션을 제공합니다.
-                            </p>
-                        </div>
-                        
-                        <div class="section-header">분석 알고리즘 개요</div>
-                        <div class="glass-card">
-                            <h4 style="color: var(--primary-color); margin-bottom: 10px; font-size: 1.05rem;">🧬 종합 창농 적합도 (Final Score)</h4>
-                            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px;">
-                                <code>Final_Score = 0.50 × 공공데이터 점수 + 0.35 × 드론 점수 + 0.15 × 청년정책 지원 점수</code>
-                            </p>
-                            <p style="font-size: 0.9rem;">
-                                공공 정보(흙토람, 지오빅데이터 등)로 기본 환경을 파악하고, 최신의 드론 항공 공간 정보로 필지의 실제 과습구역, 건조구역 및 평탄성을 정밀 검증하여 실패 확률이 낮은 농지를 안전하게 선별합니다.
-                            </p>
-                        </div>
-                    </div>
+                <div class="glass-card" style="margin-bottom: 2rem;">
+                    <div class="section-header" style="margin-top: 0; margin-bottom: 1.5rem;">8대 입지 요인 중요도 설정</div>
                     
-                    <div>
-                        <div class="img-container" style="margin-bottom: 1.5rem;">
-                            <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&q=80&w=800" alt="Drones on Farm" style="max-height: 250px; object-fit: cover;" />
-                            <div class="img-caption">원격 탐사 기반 스마트 정밀 농지 분석</div>
+                    <form id="preferenceForm" style="display: flex; flex-direction: column; gap: 2rem;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                            <!-- Category 1: 정주 여건 & 인프라 -->
+                            <div>
+                                <h4 style="color: var(--secondary-color); margin-bottom: 1rem; font-weight: 700; border-bottom: 1px solid var(--card-border); padding-bottom: 5px;"><i class="fa-solid fa-house-chimney"></i> 정주 및 인프라 선호도</h4>
+                                <div class="form-group" style="margin-bottom: 1.5rem;">
+                                    <div style="display: flex; justify-content: space-between; font-weight: 500; font-size: 0.9rem; margin-bottom: 8px;">
+                                        <span>의료 및 생활 인프라 선호도</span>
+                                        <span id="val-infra" style="color: var(--primary-color);">3점</span>
+                                    </div>
+                                    <input type="range" id="pref-infra-slider" min="1" max="5" value="3" step="1" style="width:100%; accent-color: var(--primary-color);" />
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">
+                                        <span>중요하지 않음 (1)</span>
+                                        <span>보통 (3)</span>
+                                        <span>매우 중요 (5)</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div style="display: flex; justify-content: space-between; font-weight: 500; font-size: 0.9rem; margin-bottom: 8px;">
+                                        <span>자녀 교육 및 보육 여건</span>
+                                        <span id="val-education" style="color: var(--primary-color);">3점</span>
+                                    </div>
+                                    <input type="range" id="pref-education-slider" min="1" max="5" value="3" step="1" style="width:100%; accent-color: var(--primary-color);" />
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">
+                                        <span>중요하지 않음 (1)</span>
+                                        <span>보통 (3)</span>
+                                        <span>매우 중요 (5)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Category 2: 자연환경 및 취향 -->
+                            <div>
+                                <h4 style="color: var(--primary-color); margin-bottom: 1rem; font-weight: 700; border-bottom: 1px solid var(--card-border); padding-bottom: 5px;"><i class="fa-solid fa-water"></i> 자연환경 및 경관 취향</h4>
+                                <div class="form-group" style="margin-bottom: 1.5rem;">
+                                    <div style="display: flex; justify-content: space-between; font-weight: 500; font-size: 0.9rem; margin-bottom: 8px;">
+                                        <span>해안 / 어촌 인접 선호도</span>
+                                        <span id="val-sea" style="color: var(--primary-color);">3점</span>
+                                    </div>
+                                    <input type="range" id="pref-sea-slider" min="1" max="5" value="3" step="1" style="width:100%; accent-color: var(--primary-color);" />
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">
+                                        <span>중요하지 않음 (1)</span>
+                                        <span>보통 (3)</span>
+                                        <span>매우 중요 (5)</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div style="display: flex; justify-content: space-between; font-weight: 500; font-size: 0.9rem; margin-bottom: 8px;">
+                                        <span>산림 및 청정 자연 경관 (기피시설 회피)</span>
+                                        <span id="val-nature" style="color: var(--primary-color);">3점</span>
+                                    </div>
+                                    <input type="range" id="pref-nature-slider" min="1" max="5" value="3" step="1" style="width:100%; accent-color: var(--primary-color);" />
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">
+                                        <span>중요하지 않음 (1)</span>
+                                        <span>보통 (3)</span>
+                                        <span>매우 중요 (5)</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="section-header">시스템 흐름도</div>
-                        <div class="glass-card" style="padding: 1rem; font-family: monospace; font-size: 0.8rem; background-color: rgba(15,23,42,0.8); border-color: rgba(255,255,255,0.03);">
-                            <div style="color:var(--primary-color)">[1차 스크리닝]</div>
-                            <div>- 지목, 경사, 토성 (흙토람)</div>
-                            <div>- 용수량, 지열 (지오빅데이터)</div>
-                            <div style="margin: 4px 0;">⬇ (가중합 기초 점수 산출)</div>
-                            <div style="color:var(--secondary-color)">[2차 드론 정밀 진단]</div>
-                            <div>- RGB 채널 분할 (식생/나지 면적비)</div>
-                            <div>- Grayscale 온도 강도 (과습/건조 진단)</div>
-                            <div style="margin: 4px 0;">⬇ (영상 처리 스코어 산출)</div>
-                            <div style="color:var(--accent-orange)">[최종 추천 및 다운로드]</div>
-                            <div>- 스마트팜 / 체험형 / 노지 매칭</div>
-                            <div>- 지역 지원금 및 가산점 결합</div>
-                            <div>- 결과 리포트 JSON Export</div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                            <!-- Category 3: 비즈니스 및 경제 여건 -->
+                            <div>
+                                <h4 style="color: var(--accent-orange); margin-bottom: 1rem; font-weight: 700; border-bottom: 1px solid var(--card-border); padding-bottom: 5px;"><i class="fa-solid fa-coins"></i> 비즈니스 및 경제 여건</h4>
+                                <div class="form-group" style="margin-bottom: 1.5rem;">
+                                    <div style="display: flex; justify-content: space-between; font-weight: 500; font-size: 0.9rem; margin-bottom: 8px;">
+                                        <span>대도시 판로 / 소비시장 접근성</span>
+                                        <span id="val-metropolis" style="color: var(--primary-color);">3점</span>
+                                    </div>
+                                    <input type="range" id="pref-metropolis-slider" min="1" max="5" value="3" step="1" style="width:100%; accent-color: var(--primary-color);" />
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">
+                                        <span>중요하지 않음 (1)</span>
+                                        <span>보통 (3)</span>
+                                        <span>매우 중요 (5)</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div style="display: flex; justify-content: space-between; font-weight: 500; font-size: 0.9rem; margin-bottom: 8px;">
+                                        <span>초기 투자비 (지대/땅값) 최소화 선호</span>
+                                        <span id="val-land_price" style="color: var(--primary-color);">3점</span>
+                                    </div>
+                                    <input type="range" id="pref-land_price-slider" min="1" max="5" value="3" step="1" style="width:100%; accent-color: var(--primary-color);" />
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">
+                                        <span>비싼 지대 상관없음 (1)</span>
+                                        <span>보통 (3)</span>
+                                        <span>가장 저렴한 땅 선호 (5)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Category 4: 지원 정책 및 공동체 -->
+                            <div>
+                                <h4 style="color: #a855f7; margin-bottom: 1rem; font-weight: 700; border-bottom: 1px solid var(--card-border); padding-bottom: 5px;"><i class="fa-solid fa-users"></i> 지원 정책 및 공동체</h4>
+                                <div class="form-group" style="margin-bottom: 1.5rem;">
+                                    <div style="display: flex; justify-content: space-between; font-weight: 500; font-size: 0.9rem; margin-bottom: 8px;">
+                                        <span>지자체 추가 정착 지원금 규모</span>
+                                        <span id="val-subsidy" style="color: var(--primary-color);">3점</span>
+                                    </div>
+                                    <input type="range" id="pref-subsidy-slider" min="1" max="5" value="3" step="1" style="width:100%; accent-color: var(--primary-color);" />
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">
+                                        <span>중요하지 않음 (1)</span>
+                                        <span>보통 (3)</span>
+                                        <span>매우 중요 (5)</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div style="display: flex; justify-content: space-between; font-weight: 500; font-size: 0.9rem; margin-bottom: 8px;">
+                                        <span>지역 청년농 커뮤니티 및 멘토링</span>
+                                        <span id="val-community" style="color: var(--primary-color);">3점</span>
+                                    </div>
+                                    <input type="range" id="pref-community-slider" min="1" max="5" value="3" step="1" style="width:100%; accent-color: var(--primary-color);" />
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">
+                                        <span>중요하지 않음 (1)</span>
+                                        <span>보통 (3)</span>
+                                        <span>매우 중요 (5)</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+
+                        <div style="text-align: center; margin-top: 1rem;">
+                            <button type="submit" class="btn-primary" style="padding: 1.2rem 3rem; font-size: 1.1rem; border-radius: 14px;">
+                                <i class="fa-solid fa-sliders"></i> 개인 선호도 반영 & 맞춤 추천 농지 조회
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </section>
 
@@ -145,6 +228,7 @@
                                     <th>지목</th>
                                     <th>면적 (㎡)</th>
                                     <th>1차 공공 스코어</th>
+                                    <th>개인 맞춤 스코어</th>
                                     <th>진단 상태</th>
                                 </tr>
                             </thead>
@@ -327,19 +411,24 @@
                         <p id="resultSummaryText">-</p>
                     </div>
                     
-                    <div class="card-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 2rem;">
+                    <div class="card-grid" style="grid-template-columns: repeat(5, 1fr); margin-bottom: 2rem;">
                         <div class="glass-card" style="border-color: var(--primary-color);">
                             <div class="metric-title" style="color: var(--primary-color)">최종 창농 적합 스코어</div>
-                            <div id="final-overall-score" class="metric-value" style="font-size: 2.2rem; color: #fff;">- 점</div>
+                            <div id="final-overall-score" class="metric-value" style="font-size: 1.85rem; color: #fff;">- 점</div>
                             <div class="metric-sub">종합 적합도 등급</div>
                         </div>
                         <div class="glass-card">
-                            <div class="metric-title">1차 공공 데이터 지표 (50%)</div>
+                            <div class="metric-title">1차 공공 데이터 지표 (40%)</div>
                             <div id="final-public-score" class="metric-value">- 점</div>
-                            <div class="metric-sub">토양, 접근성 등 스크리닝</div>
+                            <div class="metric-sub">토양 및 정량 입지 점수</div>
+                        </div>
+                        <div class="glass-card" style="border-color: var(--secondary-color);">
+                            <div class="metric-title" style="color: var(--secondary-color)">개인 선호 맞춤 지표 (20%)</div>
+                            <div id="final-pref-score" class="metric-value">- 점</div>
+                            <div class="metric-sub">8대 라이프스타일 가중 점수</div>
                         </div>
                         <div class="glass-card">
-                            <div class="metric-title">2차 드론 매핑 지표 (35%)</div>
+                            <div class="metric-title">2차 드론 매핑 지표 (25%)</div>
                             <div id="final-drone-score" class="metric-value">- 점</div>
                             <div class="metric-sub">지표 온도, 배수 및 편평도</div>
                         </div>
