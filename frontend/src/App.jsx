@@ -99,7 +99,7 @@ export default function App() {
   function updateInput(name, value) {
     setInputs((current) => ({
       ...current,
-      [name]: name === 'afterTaxSalary' ? Number(value) : value
+      [name]: name === 'afterTaxSalary' ? (value === '' ? '' : Number(value)) : value
     }));
   }
 

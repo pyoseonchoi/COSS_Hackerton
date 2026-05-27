@@ -48,7 +48,7 @@ export function Landing() {
                 min="0"
                 step="100000"
                 value={monthlyIncome}
-                onChange={(event) => setMonthlyIncome(Number(event.target.value))}
+                onChange={(event) => setMonthlyIncome(event.target.value === '' ? '' : Number(event.target.value))}
               />
             </label>
 
