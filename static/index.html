@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI·드론 기반 청년 농업 창업 입지 진단 시스템 MVP</title>
+    <!-- Leaflet.js Map CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Custom Style CSS -->
+    <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- 1. 사이드바 (Navigation) -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=150" alt="Brand Logo" />
+                <h1>청년농업 입지 진단</h1>
+                <p>Decision Support MVP</p>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li class="menu-item active" onclick="switchSection('overview', this)">
+                    <i class="fa-solid fa-circle-info"></i>1. 프로젝트 개요
+                </li>
+                <li class="menu-item" onclick="switchSection('public-data', this)">
+                    <i class="fa-solid fa-map-location-dot"></i>2. 1차 농지 후보 (공공)
+                </li>
+                <li class="menu-item" onclick="switchSection('drone-analysis', this)">
+                    <i class="fa-solid fa-plane-up"></i>3. 2차 정밀 분석 (드론)
+                </li>
+                <li class="menu-item" onclick="switchSection('final-recommendation', this)">
+                    <i class="fa-solid fa-award"></i>4. 최종 적합도 & 추천
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <h4>💡 해커톤 가이드</h4>
+                <p>본 시스템은 국토정보, 토양, 드론 분석을 연계하여 청년 창농 의사결정을 실시간 지원합니다.</p>
+            </div>
+        </aside>
+
+        <!-- 2. 메인 컨텐츠 영역 -->
+        <main class="main-content">
+            
+            <!-- SECTION 1: 프로젝트 개요 -->
+            <section id="overview" class="content-section active">
+                <div class="main-title">AI·드론 기반 청년 농업 창업 입지 진단 시스템</div>
+                <div class="sub-title">Balanced Regional Development & Youth Agriculture Settlement Solution</div>
+                
+                <div class="layout-split">
+                    <div>
+                        <div class="section-header">프로젝트 배경 및 목적</div>
+                        <div class="glass-card" style="margin-bottom: 1.5rem;">
+                            <p style="margin-bottom: 1rem;">
+                                대한민국의 <strong>지방 소멸</strong>과 <strong>청년 인구 유출</strong>은 국가 균형 발전을 가로막는 주요 과제입니다. 정부 및 각 지자체에서 다양한 청년농 지원 정책을 펴고 있으나, 여전히 현장에 정착하고자 하는 청년 농부들은 다음과 같은 핵심 문제에 봉착해 있습니다.
+                            </p>
+                            <ul style="padding-left: 20px; margin-bottom: 1rem; display: flex; flex-direction: column; gap: 8px;">
+                                <li><strong>농지 정보 부족:</strong> 경사도, 접근성, 용수 등 산재한 공공 농지 속성을 한곳에서 파악하기 힘듭니다.</li>
+                                <li><strong>초기 창업 실패 리스크:</strong> 필지 상태(배수, 토양 등)를 면밀히 점검하지 못하고 무리하게 시설(스마트팜 등)을 유치하여 파산하는 사례가 많습니다.</li>
+                                <li><strong>미시적 실시간 데이터 한계:</strong> 위성 지도 정보로는 실제 수분 분포 상태나 방치된 흔적을 감지하기 어렵습니다.</li>
+                            </ul>
+                            <p>
+                                따라서 본 시스템은 <strong>1차 공공 데이터 기반 광역 필터링</strong>과 <strong>2차 드론 항공 영상(RGB/열화상) 정밀 진단</strong>을 결합해 창농 적합도를 과학적으로 스코어링하고 작물 및 관련 정책을 매핑하는 입지 분석 솔루션을 제공합니다.
+                            </p>
+                        </div>
+                        
+                        <div class="section-header">분석 알고리즘 개요</div>
+                        <div class="glass-card">
+                            <h4 style="color: var(--primary-color); margin-bottom: 10px; font-size: 1.05rem;">🧬 종합 창농 적합도 (Final Score)</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px;">
+                                <code>Final_Score = 0.50 × 공공데이터 점수 + 0.35 × 드론 점수 + 0.15 × 청년정책 지원 점수</code>
+                            </p>
+                            <p style="font-size: 0.9rem;">
+                                공공 정보(흙토람, 지오빅데이터 등)로 기본 환경을 파악하고, 최신의 드론 항공 공간 정보로 필지의 실제 과습구역, 건조구역 및 평탄성을 정밀 검증하여 실패 확률이 낮은 농지를 안전하게 선별합니다.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="img-container" style="margin-bottom: 1.5rem;">
+                            <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&q=80&w=800" alt="Drones on Farm" style="max-height: 250px; object-fit: cover;" />
+                            <div class="img-caption">원격 탐사 기반 스마트 정밀 농지 분석</div>
+                        </div>
+                        
+                        <div class="section-header">시스템 흐름도</div>
+                        <div class="glass-card" style="padding: 1rem; font-family: monospace; font-size: 0.8rem; background-color: rgba(15,23,42,0.8); border-color: rgba(255,255,255,0.03);">
+                            <div style="color:var(--primary-color)">[1차 스크리닝]</div>
+                            <div>- 지목, 경사, 토성 (흙토람)</div>
+                            <div>- 용수량, 지열 (지오빅데이터)</div>
+                            <div style="margin: 4px 0;">⬇ (가중합 기초 점수 산출)</div>
+                            <div style="color:var(--secondary-color)">[2차 드론 정밀 진단]</div>
+                            <div>- RGB 채널 분할 (식생/나지 면적비)</div>
+                            <div>- Grayscale 온도 강도 (과습/건조 진단)</div>
+                            <div style="margin: 4px 0;">⬇ (영상 처리 스코어 산출)</div>
+                            <div style="color:var(--accent-orange)">[최종 추천 및 다운로드]</div>
+                            <div>- 스마트팜 / 체험형 / 노지 매칭</div>
+                            <div>- 지역 지원금 및 가산점 결합</div>
+                            <div>- 결과 리포트 JSON Export</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: 1차 농지 후보 선별 -->
+            <section id="public-data" class="content-section">
+                <div class="main-title">1차 농지 후보지 탐색</div>
+                <div class="sub-title">공공 API 데이터 연동 기반 후보 농경지 종합 정보</div>
+                
+                <div class="card-grid">
+                    <div class="glass-card">
+                        <div class="metric-title">총 분석 후보지</div>
+                        <div id="total-candidates" class="metric-value">- 곳</div>
+                        <div class="metric-sub">데이터 연동 정상</div>
+                    </div>
+                    <div class="glass-card">
+                        <div class="metric-title">기초 평균 스코어</div>
+                        <div id="avg-public-score" class="metric-value">- 점</div>
+                        <div class="metric-sub">5개 후보지 기준</div>
+                    </div>
+                    <div class="glass-card">
+                        <div class="metric-title">우수 등급 필지</div>
+                        <div id="excellent-candidates" class="metric-value">- 곳</div>
+                        <div class="metric-sub">80점 이상 기준</div>
+                    </div>
+                    <div class="glass-card">
+                        <div class="metric-title">API 어댑터 상태</div>
+                        <div class="metric-value" style="color: var(--primary-color); font-size: 1.45rem;">Active (Mock)</div>
+                        <div class="metric-sub">VWorld, 흙토람 등 대기 중</div>
+                    </div>
+                </div>
+                
+                <div class="glass-card" style="margin-bottom: 2rem; padding: 1.25rem;">
+                    <div class="section-header" style="margin-top: 0; margin-bottom: 0.75rem;">광역 후보지 리스트</div>
+                    <div class="table-container">
+                        <table class="custom-table" id="candidatesTable">
+                            <thead>
+                                <tr>
+                                    <th>후보지 ID</th>
+                                    <th>행정구역</th>
+                                    <th>세부 주소</th>
+                                    <th>지목</th>
+                                    <th>면적 (㎡)</th>
+                                    <th>1차 공공 스코어</th>
+                                    <th>진단 상태</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- JS에서 동적으로 데이터 삽입 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="layout-split">
+                    <div>
+                        <div class="section-header">지적 공간 분포 지도</div>
+                        <div id="map"></div>
+                    </div>
+                    
+                    <div>
+                        <div class="section-header">후보지별 세부 평가 스펙트럼</div>
+                        <div class="glass-card" style="height: 380px; display: flex; flex-direction: column; justify-content: center;">
+                            <div class="form-group" style="margin-bottom: 1.5rem;">
+                                <label class="form-label" for="candidateSelect">세부 점수를 분석할 후보지를 선택하세요</label>
+                                <select class="select-control" id="candidateSelect">
+                                    <!-- JS에서 동적 옵션 삽입 -->
+                                </select>
+                            </div>
+                            
+                            <div class="chart-wrapper">
+                                <canvas id="radarChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: 2차 드론 이미지 분석 -->
+            <section id="drone-analysis" class="content-section">
+                <div class="main-title">2차 미시 드론 영상 분석</div>
+                <div class="sub-title">드론 고화질 RGB 및 Grayscale 열화상 분석 모사</div>
+                
+                <div class="glass-card" style="margin-bottom: 2rem;">
+                    <div class="section-header" style="margin-top: 0; margin-bottom: 1rem;">원격 탐사 데이터 업로드 및 분석 수행</div>
+                    
+                    <form id="droneForm" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div class="form-group">
+                                <span class="form-label">1. 드론 RGB 공간 정보 이미지 업로드 (JPG, PNG)</span>
+                                <label class="custom-file-upload">
+                                    <input type="file" id="rgbFileInput" accept="image/*" />
+                                    <div class="upload-icon"><i class="fa-solid fa-image"></i></div>
+                                    <span id="rgbLabelText">클릭하여 RGB 파일 선택</span>
+                                    <div id="rgbFileName" class="file-name-display"></div>
+                                </label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <span class="form-label">2. 드론 열화상(Thermal) 이미지 업로드 (JPG, PNG)</span>
+                                <label class="custom-file-upload">
+                                    <input type="file" id="thermalFileInput" accept="image/*" />
+                                    <div class="upload-icon"><i class="fa-solid fa-temperature-empty"></i></div>
+                                    <span id="thermalLabelText">클릭하여 열화상 파일 선택</span>
+                                    <div id="thermalFileName" class="file-name-display"></div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center; background-color: rgba(255,255,255,0.02); padding: 1rem; border-radius: 10px; border: 1px solid var(--card-border);">
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="checkbox" id="useSampleCheck" checked style="width: 18px; height: 18px; accent-color: var(--primary-color);" />
+                                <span>업로드 파일이 없을 때 미리 만들어진 가상 시뮬레이션 샘플 이미지로 자동 대체하여 시연</span>
+                            </label>
+                            
+                            <button type="submit" class="btn-primary" id="analyzeBtn">
+                                <i class="fa-solid fa-play"></i> 드론 AI 공간 정보 분석 구동
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- 분석 완료 후 노출될 결과 컨테이너 -->
+                <div id="analysis-results-container" style="display: none;">
+                    <div class="layout-split" style="grid-template-columns: 0.8fr 1.2fr; margin-bottom: 2rem;">
+                        <div class="glass-card" style="display: flex; flex-direction: column; justify-content: center; gap: 1rem;">
+                            <div class="metric-card" style="background-color: var(--primary-light); border: 1px solid rgba(16,185,129,0.15); border-radius: 12px; padding: 1.2rem; text-align: center;">
+                                <div class="metric-title" style="color: var(--primary-color);">2차 드론 종합 분석 스코어</div>
+                                <div id="drone-overall-score" class="metric-value" style="font-size: 2.5rem; color: #fff;">- 점</div>
+                                <div class="metric-sub">영상 그리드 상태 가중합</div>
+                            </div>
+                            
+                            <div style="display: flex; flex-direction: column; gap: 8px; padding: 5px;">
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                                    <span style="color: var(--text-secondary)">🌿 식생 건강 점수:</span>
+                                    <strong id="metric-veg-val">- 점</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                                    <span style="color: var(--text-secondary)">💧 지표면 수분 균형:</span>
+                                    <strong id="metric-moist-val">- 점</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                                    <span style="color: var(--text-secondary)">🚜 필지 정리 상태:</span>
+                                    <strong id="metric-cond-val">- 점</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                                    <span style="color: var(--text-secondary)">⚠️ 배수 이상 안전성:</span>
+                                    <strong id="metric-drainage-val">- 점</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                                    <span style="color: var(--text-secondary)">🏗️ 시설 구축 용이성:</span>
+                                    <strong id="metric-facility-val">- 점</strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                                    <span style="color: var(--text-secondary)">🧹 초기 농지 관리난이도:</span>
+                                    <strong id="metric-difficulty-val">- 점 (낮을수록 우수)</strong>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card">
+                            <div class="section-header" style="margin-top: 0; margin-bottom: 0.75rem;">드론 세부 지표 스펙트럼</div>
+                            <div class="chart-wrapper" style="height: 280px;">
+                                <canvas id="barChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card">
+                        <div class="section-header" style="margin-top: 0; margin-bottom: 0.5rem;">공간 격자 융합 분석 시각화 (Original vs AI Overlay)</div>
+                        
+                        <div class="tabs-container">
+                            <div class="tabs-nav">
+                                <button class="tab-btn active" onclick="switchImageTab('rgb-tab-content', this)">🌱 RGB 식생 분류 매핑</button>
+                                <button class="tab-btn" onclick="switchImageTab('thermal-tab-content', this)">🔥 열화상 지표면 습도/온도 분석</button>
+                            </div>
+                            
+                            <!-- RGB Tab -->
+                            <div id="rgb-tab-content" class="tabs-content active">
+                                <div class="img-container">
+                                    <img id="rgb-orig-img" src="" alt="RGB Original" />
+                                    <div class="img-caption">드론 항공 촬영 원본 이미지 (RGB)</div>
+                                </div>
+                                <div class="img-container">
+                                    <img id="rgb-vis-img" src="" alt="RGB Overlay" />
+                                    <div class="img-caption">식물 분포(초록색) 및 토양/나지(주황색) AI 구획 분석 오버레이</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Thermal Tab -->
+                            <div id="thermal-tab-content" class="tabs-content">
+                                <div class="img-container">
+                                    <img id="thermal-orig-img" src="" alt="Thermal Original" />
+                                    <div class="img-caption">드론 원적외선 열화상 원본 이미지 (Grayscale)</div>
+                                </div>
+                                <div class="img-container">
+                                    <img id="thermal-vis-img" src="" alt="Thermal Overlay" />
+                                    <div class="img-caption">지표 온도 분포도 (파란 영역: 침수/과습의심, 빨간 영역: 가뭄 스트레스)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="analysis-warning" class="glass-card" style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                    <i class="fa-solid fa-circle-exclamation" style="font-size: 2.5rem; color: var(--accent-orange); margin-bottom: 1rem;"></i>
+                    <p>상단의 이미지를 업로드하거나 시뮬레이션을 체크하고 "드론 AI 공간 정보 분석 구동" 버튼을 클릭해 주세요.</p>
+                </div>
+            </section>
+
+            <!-- SECTION 4: 최종 결과 및 추천 -->
+            <section id="final-recommendation" class="content-section">
+                <div class="main-title">최종 창농 적합도 및 정책 가이드</div>
+                <div class="sub-title">공공 데이터 및 정밀 공간 원격 분석 정보의 다기준 의사결정 결과</div>
+                
+                <div id="final-result-warning" class="glass-card" style="text-align: center; padding: 4rem; color: var(--text-secondary);">
+                    <i class="fa-solid fa-triangle-exclamation" style="font-size: 3rem; color: var(--accent-red); margin-bottom: 1.25rem;"></i>
+                    <p>먼저 3단계 "2차 정밀 분석 (드론)" 메뉴에서 이미지 분석 과정을 마친 후 본 진단 리포트를 열람할 수 있습니다.</p>
+                </div>
+                
+                <div id="final-result-container" style="display: none;">
+                    <div class="result-banner" id="resultBanner">
+                        <h3 id="resultGradeText"><i class="fa-solid fa-circle-check"></i> -</h3>
+                        <p id="resultSummaryText">-</p>
+                    </div>
+                    
+                    <div class="card-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 2rem;">
+                        <div class="glass-card" style="border-color: var(--primary-color);">
+                            <div class="metric-title" style="color: var(--primary-color)">최종 창농 적합 스코어</div>
+                            <div id="final-overall-score" class="metric-value" style="font-size: 2.2rem; color: #fff;">- 점</div>
+                            <div class="metric-sub">종합 적합도 등급</div>
+                        </div>
+                        <div class="glass-card">
+                            <div class="metric-title">1차 공공 데이터 지표 (50%)</div>
+                            <div id="final-public-score" class="metric-value">- 점</div>
+                            <div class="metric-sub">토양, 접근성 등 스크리닝</div>
+                        </div>
+                        <div class="glass-card">
+                            <div class="metric-title">2차 드론 매핑 지표 (35%)</div>
+                            <div id="final-drone-score" class="metric-value">- 점</div>
+                            <div class="metric-sub">지표 온도, 배수 및 편평도</div>
+                        </div>
+                        <div class="glass-card">
+                            <div class="metric-title">청년농 혜택 가산점 (15%)</div>
+                            <div id="final-policy-score" class="metric-value">- 점</div>
+                            <div class="metric-sub">지역 연계 보조 지원 지수</div>
+                        </div>
+                    </div>
+                    
+                    <div class="layout-split">
+                        <div>
+                            <div class="section-header">🌱 추천 재배 작물 및 비즈니스 모델</div>
+                            <div id="cropListContainer" style="display: flex; flex-direction: column; gap: 8px;">
+                                <!-- 동적 렌더링 -->
+                            </div>
+                            
+                            <div class="section-header" style="margin-top: 1.5rem;">⚠️ 현장 주요 위험 요소 (Risk Factors)</div>
+                            <div id="riskListContainer" style="display: flex; flex-direction: column; gap: 8px;">
+                                <!-- 동적 렌더링 -->
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="section-header">🏛️ 추천 연계 정부·지자체 정책</div>
+                            <div id="policyListContainer" style="display: flex; flex-direction: column; gap: 8px;">
+                                <!-- 동적 렌더링 -->
+                            </div>
+                            
+                            <div class="section-header" style="margin-top: 1.5rem;">📊 평가 가중치 구성 포트폴리오</div>
+                            <div class="glass-card" style="height: 220px; display: flex; align-items: center; justify-content: center;">
+                                <div style="text-align: center; width: 100%;">
+                                    <canvas id="weightPieChart" style="max-height: 180px;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card" style="margin-top: 2rem; border-color: rgba(16, 185, 129, 0.15); background-color: rgba(16, 185, 129, 0.02);">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <h4 style="font-weight: 700; color: #fff; margin-bottom: 5px;">📥 최종 진단 리포트 데이터 내보내기</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">원천 분석 속성과 스코어, 텍스트 요약이 포함된 표준 JSON 문서를 다운로드하거나 로컬에 안전하게 보관합니다.</p>
+                            </div>
+                            <button class="btn-primary" id="downloadJsonBtn">
+                                <i class="fa-solid fa-download"></i> 최종 진단 리포트 JSON 다운로드
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 3. 로딩 인디케이터 오버레이 -->
+    <div class="loader-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <div class="loading-text" id="loadingText">데이터 수집 및 위성 대조 작업을 실행 중입니다...</div>
+    </div>
+
+    <!-- Leaflet.js Map Library -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Main Frontend JS App Logic -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

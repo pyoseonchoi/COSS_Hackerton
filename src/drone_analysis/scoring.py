@@ -1,6 +1,6 @@
 import os
 import yaml
-from typing import Dict, Any
+from typing import Dict, Any, Tuple
 
 def load_scoring_weights() -> Dict[str, Any]:
     """scoring_weights.yaml 설정 파일을 로드합니다.
@@ -139,4 +139,3 @@ def calculate_final_score(public_score: float, drone_score: float, youth_policy_
         grade = "부적합 또는 개선 필요"
         
     return final_score, grade
-from typing import Tuple

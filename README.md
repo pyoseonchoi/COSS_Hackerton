@@ -105,11 +105,16 @@ pip install -r requirements.txt
 ```
 
 ### 4.2 시스템 구동
-다음 명령어로 Streamlit 로컬 웹 서버를 실행합니다.
+다음 명령어로 FastAPI Uvicorn 웹 서버를 실행합니다.
 ```bash
-streamlit run app.py
+uvicorn main:app --reload --port 8000
 ```
-- 브라우저가 자동으로 열리며, 로컬 주소 `http://localhost:8501`로 진입합니다.
+또는 파이썬 파일로 직접 실행할 수도 있습니다.
+```bash
+python main.py
+```
+- 실행 후 브라우저를 열고 **`http://localhost:8000`** 주소로 접속하면 대시보드 화면이 노출됩니다.
+- API 규격 문서는 **`http://localhost:8000/docs`** (Swagger UI) 에서 테스트 가능합니다.
 
 ---
 
