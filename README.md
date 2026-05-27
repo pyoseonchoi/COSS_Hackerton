@@ -76,9 +76,31 @@ agri-youth-site-mvp/
 
 ## 💻 4. 실행 방법 (Usage)
 
-### 4.1 패키지 설치
-Python 3.8 이상 환경에서 다음 명령어를 실행하여 필수 라이브러리를 설치합니다.
-```bash
+### 4.1 가상환경 생성 및 패키지 설치
+Python 3.8 이상 환경에서 터미널 종류(PowerShell 또는 CMD)에 맞춰 가상환경(`venv`)을 활성화하고 패키지를 설치합니다.
+
+#### PowerShell (윈도우 추천)
+```powershell
+# 1. 가상환경 생성
+python -m venv .venv
+
+# 2. 실행 정책 변경 (스크립트 실행 에러 방지) 및 활성화
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+.venv\Scripts\Activate.ps1
+
+# 3. 필수 패키지 설치
+pip install -r requirements.txt
+```
+
+#### CMD (명령 프롬프트)
+```cmd
+# 1. 가상환경 생성
+python -m venv .venv
+
+# 2. 가상환경 활성화
+.venv\Scripts\activate.bat
+
+# 3. 필수 패키지 설치
 pip install -r requirements.txt
 ```
 
