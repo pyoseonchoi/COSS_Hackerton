@@ -99,6 +99,34 @@ export function Landing() {
             </a>
             <span>{bestOption ? `연 ${formatWon(yearlyFarmIncome)} 규모의 농업 소득 시뮬레이션` : '소득과 지역을 바꿔 비교해보세요'}</span>
           </div>
+
+          <div className="governmentSupportInfo" style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(255,255,255,0.05)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'left' }}>
+            <h3 style={{ color: 'var(--green)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Sprout size={18} />
+              최대 정부 보조금 및 융자 지원 안내
+            </h3>
+            
+            <div style={{ display: 'grid', gap: '1rem' }}>
+              <div>
+                <strong style={{ display: 'block', color: 'var(--text)', marginBottom: '4px' }}>💰 최대 정부 보조금</strong>
+                <ul className="cleanList" style={{ paddingLeft: '1.5rem', color: 'var(--muted)', fontSize: '0.9rem', lineHeight: '1.5' }}>
+                  <li>① 청년농업인 영농정착지원금(만 40세 미만, 독립경영 3년 이하): <strong>합계 3,600만 원</strong> (36개월 분할 지급)</li>
+                  <li>② 지자체별 소액 보조금 (기타): <strong>100만 원 ~ 500만 원</strong></li>
+                </ul>
+              </div>
+              
+              <div>
+                <strong style={{ display: 'block', color: 'var(--text)', marginBottom: '4px' }}>🏦 정부 보증 융자금</strong>
+                <ul className="cleanList" style={{ paddingLeft: '1.5rem', color: 'var(--muted)', fontSize: '0.9rem', lineHeight: '1.5' }}>
+                  <li>① 일반 귀농인인 경우: <strong>최대 3억 7,500만 원</strong> 한도 대출</li>
+                  <li>② 만 40세 미만 '청년후계농'으로 선발된 경우: <strong>최대 5억 7,500만 원</strong> 한도 대출</li>
+                </ul>
+              </div>
+            </div>
+            <p style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'var(--muted)' }}>
+              * 초기비용 마련 시 위 지원금과 융자를 활용하면 실제 본인 부담금을 크게 낮출 수 있습니다.
+            </p>
+          </div>
         </section>
       </header>
     </div>
