@@ -77,6 +77,13 @@ export default function App() {
     () => rankCandidates(candidates, preferences)[0],
     [candidates, preferences]
   );
+  const candidatePlan = useMemo(() => {
+    if (!selectedCandidate) return primaryPlan;
+    const matchedRegion = regions.find(r => r.name === selectedCandidate.region);
+    if (!matchedRegion) return primaryPlan;
+    const candidateOptions = buildInvestmentOptions({ afterTaxSalary: inputs.afterTaxSalary, regionId: matchedRegion.id });
+    return candidateOptions[0] || primaryPlan;
+  }, [selectedCandidate, inputs.afterTaxSalary, primaryPlan]);
 
   useEffect(() => {
     let isMounted = true;
@@ -122,9 +129,9 @@ export default function App() {
         rgbFile: droneForm.rgbFile,
         thermalFile: droneForm.thermalFile,
         useSample: droneForm.useSample,
-        cropName: primaryPlan?.crop?.name ?? '',
-        monthlyNetProfit: primaryPlan?.monthlyNetProfit ?? 0,
-        requiredArea: primaryPlan?.requiredArea ?? 0
+        cropName: candidatePlan?.crop?.name ?? '',
+        monthlyNetProfit: candidatePlan?.monthlyNetProfit ?? 0,
+        requiredArea: candidatePlan?.requiredArea ?? 0
       });
       setAnalysisResult(result);
       setActiveSection('final');
@@ -137,7 +144,7 @@ export default function App() {
 
   function downloadFinalJson() {
     const report = {
-      income: primaryPlan,
+      income: candidatePlan,
       preferences,
       candidate: selectedCandidate,
       droneAnalysis: analysisResult,
@@ -203,7 +210,7 @@ export default function App() {
 
         {activeSection === 'final' && (
           <FinalSection
-            primaryPlan={primaryPlan}
+            primaryPlan={candidatePlan}
             selectedCandidate={selectedCandidate}
             recommendedCandidate={recommendedCandidate}
             preferences={preferences}
