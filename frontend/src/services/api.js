@@ -10,10 +10,14 @@ export async function getCandidates() {
   }
 }
 
-export async function analyzeDroneImages({ candidateId, rgbFile, thermalFile, useSample }) {
+export async function analyzeDroneImages({ candidateId, rgbFile, thermalFile, useSample, cropName, monthlyNetProfit, requiredArea }) {
   const formData = new FormData();
   formData.append('candidate_id', candidateId);
   formData.append('use_sample', String(useSample));
+  if (cropName) formData.append('crop_name', cropName);
+  if (monthlyNetProfit) formData.append('monthly_net_profit', String(monthlyNetProfit));
+  if (requiredArea) formData.append('required_area', String(requiredArea));
+  
   if (rgbFile) formData.append('rgb_file', rgbFile);
   if (thermalFile) formData.append('thermal_file', thermalFile);
 

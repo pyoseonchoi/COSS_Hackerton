@@ -32,6 +32,9 @@ def analyze_thermal_image(image_path_or_obj) -> Tuple[Dict[str, Any], np.ndarray
     elif isinstance(image_path_or_obj, Image.Image):
         img_rgb = np.array(image_path_or_obj)
         img = cv2.cvtColor(img_rgb, cv2.COLOR_RGB2BGR)
+    elif isinstance(image_path_or_obj, np.ndarray):
+        # OpenCV 이미지(numpy 배열)인 경우 그대로 복사 사용
+        img = image_path_or_obj.copy()
 
     # 이미지가 제대로 로드되지 않은 경우 Dummy 이미지 생성
     if img is None:

@@ -9,6 +9,7 @@ import {
   LandPlot,
   MapPin,
   Play,
+  Sparkles,
   TrendingUp,
   Upload
 } from 'lucide-react';
@@ -24,14 +25,14 @@ import { analyzeDroneImages, getCandidates } from './services/api';
 const landingHref = import.meta.env.DEV ? import.meta.env.BASE_URL : '/';
 
 const preferenceDefaults = {
-  infra: 4,
+  infra: 3,
   education: 3,
-  sea: 2,
-  nature: 5,
+  sea: 3,
+  nature: 3,
   metropolis: 3,
-  landPrice: 4,
-  subsidy: 5,
-  community: 4
+  landPrice: 3,
+  subsidy: 3,
+  community: 3
 };
 
 const preferenceLabels = [
@@ -120,7 +121,10 @@ export default function App() {
         candidateId: selectedCandidate.candidate_id,
         rgbFile: droneForm.rgbFile,
         thermalFile: droneForm.thermalFile,
-        useSample: droneForm.useSample
+        useSample: droneForm.useSample,
+        cropName: primaryPlan?.crop?.name ?? '',
+        monthlyNetProfit: primaryPlan?.monthlyNetProfit ?? 0,
+        requiredArea: primaryPlan?.requiredArea ?? 0
       });
       setAnalysisResult(result);
       setActiveSection('final');
@@ -690,6 +694,40 @@ function FinalSection({ primaryPlan, selectedCandidate, recommendedCandidate, pr
         />
       </div>
 
+      {analysisResult?.gemini_report && (
+        <div className="glassCard aiReportCard" style={{ borderLeft: '4px solid var(--green)', display: 'grid', gap: '16px' }}>
+          <div className="cardTitle" style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0 }}>
+            <Sparkles size={18} style={{ color: 'var(--green)' }} />
+            <span>Gemini AI 심층 입지 분석 리포트</span>
+          </div>
+          
+          <div style={{ lineHeight: '1.65', color: 'var(--text)' }}>
+            {analysisResult.gemini_report.analysis_summary}
+          </div>
+          
+          <div className="twoColumn" style={{ marginTop: '10px', paddingTop: '16px', borderTop: '1px solid var(--line)' }}>
+            <div>
+              <strong style={{ display: 'block', marginBottom: '8px', color: 'var(--text)' }}>🛠️ 드론 관측 현장 결함 및 솔루션</strong>
+              <ul className="cleanList" style={{ paddingLeft: '16px', display: 'grid', gap: '8px' }}>
+                {analysisResult.gemini_report.risks_solutions.map((item, idx) => (
+                  <li key={idx}>
+                    <strong style={{ color: 'var(--text)' }}>{item.element}</strong>: {item.solution} <em style={{ fontSize: '0.8rem', color: 'var(--muted)', fontStyle: 'normal' }}>({item.cause})</em>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <strong style={{ display: 'block', marginBottom: '8px', color: 'var(--text)' }}>🚀 단계별 창농 실천 로드맵</strong>
+              <ol className="cleanList" style={{ paddingLeft: '16px', display: 'grid', gap: '8px', listStyleType: 'decimal' }}>
+                {analysisResult.gemini_report.startup_roadmap.map((step, idx) => (
+                  <li key={idx}>{step}</li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="twoColumn">
         <div className="glassCard">
           <div className="cardTitle">추천 근거</div>
@@ -787,25 +825,46 @@ function NumberField({ label, value, step, onChange }) {
 }
 
 function rankCandidates(candidates, preferences) {
-  const preferenceBoost =
-    preferences.infra * 0.8 +
-    preferences.education * 0.3 +
-    preferences.nature * 0.6 +
-    preferences.landPrice * 0.9 +
-    preferences.subsidy * 1.1 +
-    preferences.community * 0.5 -
-    preferences.sea * 0.2 -
-    preferences.metropolis * 0.1;
+  const sumOfWeights =
+    (preferences.infra || 0) +
+    (preferences.education || 0) +
+    (preferences.sea || 0) +
+    (preferences.nature || 0) +
+    (preferences.metropolis || 0) +
+    (preferences.landPrice || 0) +
+    (preferences.subsidy || 0) +
+    (preferences.community || 0);
 
   return candidates
-    .map((candidate) => ({
-      ...candidate,
-      adjustedScore: Math.min(100, candidate.public_api_score + preferenceBoost)
-    }))
+    .map((candidate) => {
+      const weightedScoreSum =
+        (preferences.infra || 0) * (candidate.pref_infra !== undefined ? candidate.pref_infra : (candidate.public_api_score ?? 70)) +
+        (preferences.education || 0) * (candidate.pref_education !== undefined ? candidate.pref_education : (candidate.public_api_score ?? 70)) +
+        (preferences.sea || 0) * (candidate.pref_sea !== undefined ? candidate.pref_sea : (candidate.public_api_score ?? 70)) +
+        (preferences.nature || 0) * (candidate.pref_nature !== undefined ? candidate.pref_nature : (candidate.public_api_score ?? 70)) +
+        (preferences.metropolis || 0) * (candidate.pref_metropolis !== undefined ? candidate.pref_metropolis : (candidate.public_api_score ?? 70)) +
+        (preferences.landPrice || 0) * (candidate.pref_land_price !== undefined ? candidate.pref_land_price : (candidate.public_api_score ?? 70)) +
+        (preferences.subsidy || 0) * (candidate.pref_subsidy !== undefined ? candidate.pref_subsidy : (candidate.public_api_score ?? 70)) +
+        (preferences.community || 0) * (candidate.pref_community !== undefined ? candidate.pref_community : (candidate.public_api_score ?? 70));
+
+      const preferenceScore = sumOfWeights > 0 ? weightedScoreSum / sumOfWeights : 70;
+      
+      // Combine public api score (50%) and user preference score (50%)
+      const publicScore = candidate.public_api_score ?? 70;
+      const adjustedScore = publicScore * 0.5 + preferenceScore * 0.5;
+
+      return {
+        ...candidate,
+        adjustedScore: Math.min(100, Math.max(0, Math.round(adjustedScore * 10) / 10))
+      };
+    })
     .sort((a, b) => b.adjustedScore - a.adjustedScore);
 }
 
 function calculateFinalScore(candidate, analysisResult) {
+  if (analysisResult && analysisResult.final_startup_suitability !== undefined) {
+    return Number(analysisResult.final_startup_suitability);
+  }
   const publicScore = Number(candidate?.public_api_score ?? 70);
   const droneScore = Number(analysisResult?.drone_analysis_score ?? publicScore);
   return publicScore * 0.55 + droneScore * 0.35 + 8;

@@ -9,6 +9,16 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
+# .env 파일 수동 로드
+env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
+if os.path.exists(env_path):
+    with open(env_path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                parts = line.split("=", 1)
+                os.environ[parts[0].strip()] = parts[1].strip()
+
 # 모듈 임포트
 from src.public_data.mock_loader import load_mock_candidates
 from src.utils.io import export_result_json
@@ -37,6 +47,31 @@ REACT_DASHBOARD_PATH = os.path.join(REACT_BUILD_DIR, "dashboard.html")
 DATA_DIR = os.path.join(PROJECT_ROOT, "data")
 SAMPLE_IMG_DIR = os.path.join(DATA_DIR, "sample_images")
 
+# Helper: 한글 경로 지원 OpenCV 이미지 읽기/쓰기 함수
+def cv2_imread_unicode(path, flags=None):
+    try:
+        import cv2
+        import numpy as np
+        img_array = np.fromfile(path, np.uint8)
+        read_flags = flags if flags is not None else cv2.IMREAD_COLOR
+        return cv2.imdecode(img_array, read_flags)
+    except Exception:
+        return None
+
+def cv2_imwrite_unicode(path, img) -> bool:
+    try:
+        import cv2
+        import numpy as np
+        ext = os.path.splitext(path)[1]
+        ret, buf = cv2.imencode(ext, img)
+        if ret:
+            with open(path, "wb") as f:
+                f.write(buf.tobytes())
+            return True
+    except Exception as e:
+        print(f"cv2_imwrite_unicode failed for {path}: {e}")
+    return False
+
 # 기본 이미지 자동 생성 함수 임포트 구동 (app.py에 있던 로직 이관)
 def ensure_sample_images():
     try:
@@ -55,7 +90,7 @@ def ensure_sample_images():
         cv2.rectangle(rgb_img, (350, 50), (550, 350), (30, 105, 200), -1)  # Bare soil
         cv2.rectangle(rgb_img, (50, 80), (180, 220), (220, 220, 220), -1)  # Greenhouse outline
         cv2.putText(rgb_img, "Greenhouse Setup", (60, 150), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 0), 1)
-        cv2.imwrite(rgb_path, rgb_img)
+        cv2_imwrite_unicode(rgb_path, rgb_img)
         
     if not os.path.exists(thermal_path):
         thermal_img = np.zeros((400, 600, 3), dtype=np.uint8)
@@ -64,7 +99,7 @@ def ensure_sample_images():
             thermal_img[:, i] = [val, val, val]
         cv2.circle(thermal_img, (200, 250), 70, (30, 30, 30), -1)  # Wet spot
         cv2.circle(thermal_img, (480, 150), 60, (230, 230, 230), -1)  # Dry/hot spot
-        cv2.imwrite(thermal_path, thermal_img)
+        cv2_imwrite_unicode(thermal_path, thermal_img)
 
     return True
 
@@ -137,7 +172,10 @@ async def analyze_drone_data(
     candidate_id: str = Form(...),
     rgb_file: Optional[UploadFile] = File(None),
     thermal_file: Optional[UploadFile] = File(None),
-    use_sample: bool = Form(True)
+    use_sample: bool = Form(True),
+    crop_name: Optional[str] = Form(None),
+    monthly_net_profit: Optional[float] = Form(None),
+    required_area: Optional[float] = Form(None)
 ):
     try:
         import cv2
@@ -169,7 +207,7 @@ async def analyze_drone_data(
         rgb_img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     elif use_sample:
         sample_path = os.path.join(SAMPLE_IMG_DIR, "sample_rgb.png")
-        rgb_img = cv2.imread(sample_path)
+        rgb_img = cv2_imread_unicode(sample_path)
         
     # Thermal 처리
     thermal_img = None
@@ -179,7 +217,7 @@ async def analyze_drone_data(
         thermal_img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     elif use_sample:
         sample_path = os.path.join(SAMPLE_IMG_DIR, "sample_thermal.png")
-        thermal_img = cv2.imread(sample_path)
+        thermal_img = cv2_imread_unicode(sample_path)
 
     if rgb_img is None or thermal_img is None:
         raise HTTPException(
@@ -204,6 +242,36 @@ async def analyze_drone_data(
         recommended_crops, risks, policy_recommendations, analysis_summary = recommend_crops(
             candidate, drone_details
         )
+        
+        # 6.1 Gemini AI 리포트 생성 시도
+        gemini_report = None
+        if os.getenv("GEMINI_API_KEY"):
+            try:
+                from src.recommendation.gemini_recommender import get_gemini_recommendation
+                income_plan = {
+                    "crop": {"name": crop_name or "미지정"},
+                    "monthlyNetProfit": int(monthly_net_profit) if monthly_net_profit else 0,
+                    "requiredArea": int(required_area) if required_area else 0
+                }
+                gemini_res = get_gemini_recommendation(candidate, drone_details, income_plan)
+                gemini_report = {
+                    "analysis_summary": gemini_res.analysis_summary,
+                    "risks_solutions": [
+                        {
+                            "element": r.element,
+                            "cause": r.cause,
+                            "solution": r.solution
+                        } for r in gemini_res.risks_solutions
+                    ],
+                    "policy_tips": gemini_res.policy_tips,
+                    "startup_roadmap": gemini_res.startup_roadmap
+                }
+                # Gemini 결과가 성공하면 기본 결과의 일부 항목 대체/강화
+                analysis_summary = gemini_res.analysis_summary
+                risks = [f"{r.element}: {r.solution} ({r.cause})" for r in gemini_res.risks_solutions]
+                policy_recommendations = gemini_res.policy_tips
+            except Exception as e:
+                print(f"Gemini recommendation failed, falling back: {e}")
         
         # 7. 이미지 Base64 인코딩
         rgb_vis_b64 = encode_image_to_base64(rgb_visualized)
@@ -232,6 +300,7 @@ async def analyze_drone_data(
             "risks": risks,
             "policy_recommendations": policy_recommendations,
             "analysis_summary": analysis_summary,
+            "gemini_report": gemini_report,
             "images": {
                 "rgb_original": f"data:image/png;base64,{rgb_orig_b64}",
                 "rgb_visualized": f"data:image/png;base64,{rgb_vis_b64}",
