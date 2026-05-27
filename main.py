@@ -75,6 +75,29 @@ def encode_image_to_base64(img_bgr) -> str:
     _, buffer = cv2.imencode('.png', img_bgr)
     return base64.b64encode(buffer).decode('utf-8')
 
+# .env 파일 수동 로드 (추가 라이브러리 없이 구현)
+def load_dotenv():
+    project_root = os.path.dirname(os.path.abspath(__file__))
+    env_path = os.path.join(project_root, ".env")
+    if os.path.exists(env_path):
+        with open(env_path, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    parts = line.split("=", 1)
+                    key = parts[0].strip()
+                    val = parts[1].strip()
+                    os.environ[key] = val
+
+load_dotenv()
+
+# 설정값 프론트 서빙 API
+@app.get("/api/config")
+def get_config():
+    return {
+        "vworld_api_key": os.getenv("VWORLD_API_KEY", "")
+    }
+
 # 루트 주소 접속 시 랜딩페이지 서빙
 @app.get("/")
 def read_root():
