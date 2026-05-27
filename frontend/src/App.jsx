@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import {
   AlertTriangle,
   ArrowLeft,
@@ -349,13 +349,172 @@ function PreferenceSection({ preferences, recommendedCandidate, onPreferenceChan
 
 function CandidateSection({ status, candidates, selectedCandidateId, onSelect, onNext }) {
   const selected = candidates.find((candidate) => candidate.candidate_id === selectedCandidateId) ?? candidates[0];
+  const mapRef = useRef(null);
+  const markersRef = useRef({});
+
+  useEffect(() => {
+    let isMounted = true;
+    let mapInstance = null;
+
+    async function initMap() {
+      if (!document.getElementById('map-container')) return;
+
+      let apiKey = "";
+      try {
+        const response = await fetch('/api/config');
+        if (response.ok) {
+          const data = await response.json();
+          apiKey = data.vworld_api_key || "";
+        }
+      } catch (e) {
+        console.error("Failed to load V-World config:", e);
+      }
+
+      if (!isMounted) return;
+
+      const L = window.L;
+      if (!L) {
+        console.warn("Leaflet is not available on window.");
+        return;
+      }
+
+      // Calculate center
+      const lats = candidates.map(c => c.lat).filter(Boolean);
+      const lngs = candidates.map(c => c.lng).filter(Boolean);
+      const centerLat = lats.length ? (lats.reduce((a, b) => a + b, 0) / lats.length) : 36.5;
+      const centerLng = lngs.length ? (lngs.reduce((a, b) => a + b, 0) / lngs.length) : 127.5;
+
+      // Initialize map
+      mapInstance = L.map('map-container').setView([centerLat, centerLng], 7);
+      mapRef.current = mapInstance;
+
+      // Default light base map
+      const cartoLight = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 20
+      });
+
+      let baseMaps = {
+        "기본 다크/라이트 맵": cartoLight
+      };
+      let overlayMaps = {};
+
+      if (apiKey && apiKey.trim() !== "") {
+        const vworldBase = L.tileLayer(`https://api.vworld.kr/req/wmts/1.0.0/${apiKey}/Base/{z}/{y}/{x}.png`, {
+          maxZoom: 19,
+          attribution: '© V-World Base'
+        });
+
+        const vworldSatellite = L.tileLayer(`https://api.vworld.kr/req/wmts/1.0.0/${apiKey}/Satellite/{z}/{y}/{x}.jpeg`, {
+          maxZoom: 19,
+          attribution: '© V-World Satellite'
+        });
+
+        const cadastralLayer = L.tileLayer.wms('https://api.vworld.kr/req/wms', {
+          layers: 'lp_pa_cbnd_bonbun,lp_pa_cbnd_bubun',
+          styles: 'lp_pa_cbnd_bonbun,lp_pa_cbnd_bubun,lp_pa_cbnd_bonbun_line,lp_pa_cbnd_bubun_line',
+          format: 'image/png',
+          transparent: true,
+          version: '1.3.0',
+          key: apiKey,
+          domain: window.location.origin,
+          attribution: '© V-World 지적도'
+        });
+
+        const agriZoneLayer = L.tileLayer.wms('https://api.vworld.kr/req/wms', {
+          layers: 'LT_C_UQ111',
+          styles: 'LT_C_UQ111',
+          format: 'image/png',
+          transparent: true,
+          version: '1.3.0',
+          key: apiKey,
+          domain: window.location.origin,
+          attribution: '© V-World 농업진흥지역'
+        });
+
+        vworldBase.addTo(mapInstance);
+
+        baseMaps["브이월드 도로지도"] = vworldBase;
+        baseMaps["브이월드 위성지도"] = vworldSatellite;
+        overlayMaps["연속지적도 경계"] = cadastralLayer;
+        overlayMaps["농업진흥지역 구역"] = agriZoneLayer;
+
+        L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(mapInstance);
+      } else {
+        cartoLight.addTo(mapInstance);
+      }
+
+      // Add Markers
+      const markerGroup = L.featureGroup().addTo(mapInstance);
+      markersRef.current = {};
+
+      candidates.forEach(c => {
+        if (!c.lat || !c.lng) return;
+        const score = c.adjustedScore !== undefined ? c.adjustedScore : c.public_api_score;
+        const color = score >= 80 ? '#10b981' : (score >= 65 ? '#f59e0b' : '#ef4444');
+
+        const marker = L.circleMarker([c.lat, c.lng], {
+          radius: 12,
+          fillColor: color,
+          color: '#0b0f19',
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0.8
+        }).addTo(markerGroup);
+
+        marker.bindPopup(`
+          <div style="color: #0b0f19; font-family: 'Noto Sans KR'; font-size: 0.85rem; padding: 4px; line-height: 1.4;">
+            <strong style="font-size: 0.9rem;">${c.candidate_id}</strong><br>
+            <span style="font-size:0.75rem; color:#666;">${c.address}</span><br>
+            <strong>공공 스코어: ${c.public_api_score}점</strong><br>
+            <strong>맞춤 스코어: ${Number(score).toFixed(1)}점</strong>
+          </div>
+        `);
+
+        marker.on('click', () => {
+          onSelect(c.candidate_id);
+        });
+
+        markersRef.current[c.candidate_id] = marker;
+      });
+
+      if (candidates.length > 0) {
+        mapInstance.fitBounds(markerGroup.getBounds().pad(0.2));
+      }
+    }
+
+    initMap();
+
+    return () => {
+      isMounted = false;
+      if (mapInstance) {
+        mapInstance.remove();
+        mapRef.current = null;
+      }
+    };
+  }, [candidates, onSelect]);
+
+  // Selected candidate effect (center and zoom in)
+  useEffect(() => {
+    if (mapRef.current && selectedCandidateId) {
+      const target = candidates.find(c => c.candidate_id === selectedCandidateId);
+      if (target && target.lat && target.lng) {
+        mapRef.current.setView([target.lat, target.lng], 16);
+        const marker = markersRef.current[selectedCandidateId];
+        if (marker) {
+          marker.openPopup();
+        }
+      }
+    }
+  }, [selectedCandidateId, candidates]);
 
   return (
     <section className="dashboardSection">
       <SectionHeader
         eyebrow="Step 03"
-        title="1차 농지 후보지 탐색"
-        description="원본의 지도/레이더 차트를 안정적인 카드와 점수바 UI로 React화했습니다."
+        title="1차 농지 후보지 탐색 및 지형 분석"
+        description="공공 데이터 및 브이월드 연속지적도/농업진흥지역 레이어를 지도로 탐색할 수 있습니다."
       />
 
       {status === 'error' && (
@@ -406,6 +565,26 @@ function CandidateSection({ status, candidates, selectedCandidateId, onSelect, o
             <div className="emptyState">후보지를 불러오는 중입니다.</div>
           )}
         </div>
+      </div>
+
+      <div className="glassCard" style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '10px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div className="cardTitle" style={{ margin: 0 }}>지적 공간 분포 지도</div>
+          <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
+            💡 지적도 경계 및 농업진흥지역 구역을 켜고 지도를 확대(+)하면 필지 경계선이 선명하게 나타납니다.
+          </span>
+        </div>
+        <div
+          id="map-container"
+          style={{
+            height: '420px',
+            width: '100%',
+            borderRadius: '12px',
+            border: '1px solid var(--line)',
+            background: 'var(--bg)',
+            zIndex: 1
+          }}
+        ></div>
       </div>
     </section>
   );
