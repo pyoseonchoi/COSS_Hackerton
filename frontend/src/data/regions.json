@@ -1,56 +1,3650 @@
 [
   {
-    "id": "jinju",
-    "name": "경남 진주",
-    "logisticsCostIndex": 0.95,
-    "laborCostIndex": 1.02,
+    "id": "region-f92f7ce2",
+    "name": "강원도 강릉시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
     "landRentIndex": 1.08,
-    "climateTags": ["온난", "시설재배", "일조량 양호"],
-    "risks": ["여름 고온", "시설 냉방비"]
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
   },
   {
-    "id": "damyang",
-    "name": "전남 담양",
+    "id": "gangwon-goseong",
+    "name": "강원도 고성군",
     "logisticsCostIndex": 1.03,
-    "laborCostIndex": 0.98,
+    "laborCostIndex": 1.0,
     "landRentIndex": 0.96,
-    "climateTags": ["온난", "딸기", "시설재배"],
-    "risks": ["장마철 과습", "병해충"]
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
   },
   {
-    "id": "goesan",
-    "name": "충북 괴산",
-    "logisticsCostIndex": 1.08,
-    "laborCostIndex": 0.94,
-    "landRentIndex": 0.88,
-    "climateTags": ["내륙", "고추", "노지재배"],
-    "risks": ["한파", "가격 변동"]
+    "id": "region-534fd2dc",
+    "name": "강원도 동해시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-2c8f60ec",
+    "name": "강원도 삼척시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-a21f0432",
+    "name": "강원도 속초시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-52223912",
+    "name": "강원도 양구군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-0d8223c5",
+    "name": "강원도 양양군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-365a53ea",
+    "name": "강원도 영월군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-41c8dad9",
+    "name": "강원도 원주시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-20ea99b1",
+    "name": "강원도 인제군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-0d3e263e",
+    "name": "강원도 정선군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-a775c156",
+    "name": "강원도 철원군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-ebe5e60a",
+    "name": "강원도 춘천시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-22f3b4b8",
+    "name": "강원도 태백시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
   },
   {
     "id": "pyeongchang",
-    "name": "강원 평창",
-    "logisticsCostIndex": 1.18,
-    "laborCostIndex": 1,
-    "landRentIndex": 0.82,
-    "climateTags": ["고랭지", "서늘함", "일교차"],
-    "risks": ["겨울 한파", "난방비"]
+    "name": "강원도 평창군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
   },
   {
-    "id": "nonsan",
-    "name": "충남 논산",
-    "logisticsCostIndex": 0.92,
-    "laborCostIndex": 1.04,
-    "landRentIndex": 1.02,
-    "climateTags": ["딸기", "시설재배", "유통 인프라"],
-    "risks": ["시설 투자 부담", "노동 집중"]
+    "id": "region-7c70249a",
+    "name": "강원도 홍천군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-0befb889",
+    "name": "강원도 화천군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-9fb18ef7",
+    "name": "강원도 횡성군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-3971cac5",
+    "name": "경기도 가평군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-7e0b7103",
+    "name": "경기도 고양시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-445be825",
+    "name": "경기도 과천시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-7b5519be",
+    "name": "경기도 광명시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-f91b47f2",
+    "name": "경기도 광주시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-502c0d46",
+    "name": "경기도 구리시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-de34e6fc",
+    "name": "경기도 군포시",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-9664587c",
+    "name": "경기도 김포시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-d3ea61af",
+    "name": "경기도 남양주시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-c8d7bcb9",
+    "name": "경기도 동두천시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-eb683393",
+    "name": "경기도 부천시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-fe7e2f66",
+    "name": "경기도 성남시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-7d3711b3",
+    "name": "경기도 수원시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-c5f09d4a",
+    "name": "경기도 시흥시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-6c88fd5b",
+    "name": "경기도 안산시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-7f6d644d",
+    "name": "경기도 안성시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-933e936b",
+    "name": "경기도 안양시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-2beca08f",
+    "name": "경기도 양주시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-f60ff157",
+    "name": "경기도 양평군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-2aa915d5",
+    "name": "경기도 여주시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-17d6cb58",
+    "name": "경기도 연천군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-414a51ab",
+    "name": "경기도 오산시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-3285c538",
+    "name": "경기도 용인시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-2aa911d6",
+    "name": "경기도 의왕시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-11fb7110",
+    "name": "경기도 의정부시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-717dad0b",
+    "name": "경기도 이천시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-12359b32",
+    "name": "경기도 파주시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-3cb6db0f",
+    "name": "경기도 평택시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-a63fa82f",
+    "name": "경기도 포천시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-bdedac8a",
+    "name": "경기도 하남시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "hwaseong",
+    "name": "경기도 화성시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "geoje",
+    "name": "경상남도 거제시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "geochang",
+    "name": "경상남도 거창군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "gyeongnam-goseong",
+    "name": "경상남도 고성군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "gimhae",
+    "name": "경상남도 김해시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "namhae",
+    "name": "경상남도 남해군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "miryang",
+    "name": "경상남도 밀양시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "sacheon",
+    "name": "경상남도 사천시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "sancheong",
+    "name": "경상남도 산청군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "yangsan",
+    "name": "경상남도 양산시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "uiryeong",
+    "name": "경상남도 의령군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "jinju",
+    "name": "경상남도 진주시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "changnyeong",
+    "name": "경상남도 창녕군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "changwon",
+    "name": "경상남도 창원시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "tongyeong",
+    "name": "경상남도 통영시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "hadong",
+    "name": "경상남도 하동군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "haman",
+    "name": "경상남도 함안군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "hamyang",
+    "name": "경상남도 함양군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "hapcheon",
+    "name": "경상남도 합천군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-961bfad5",
+    "name": "경상북도 경산시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-4fbc9518",
+    "name": "경상북도 경주시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-30035f3e",
+    "name": "경상북도 고령군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-fcd67988",
+    "name": "경상북도 구미시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-2afc7d9d",
+    "name": "경상북도 김천시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-79831617",
+    "name": "경상북도 문경시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-a45d2972",
+    "name": "경상북도 봉화군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
   },
   {
     "id": "sangju",
-    "name": "경북 상주",
-    "logisticsCostIndex": 1.05,
-    "laborCostIndex": 0.96,
-    "landRentIndex": 0.9,
-    "climateTags": ["과수", "노지", "내륙"],
-    "risks": ["서리", "수확기 인력"]
+    "name": "경상북도 상주시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-ee05fed4",
+    "name": "경상북도 성주군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-5a7cbc7a",
+    "name": "경상북도 안동시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-f07fc466",
+    "name": "경상북도 영덕군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-6eae1fef",
+    "name": "경상북도 영양군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-e82c5d69",
+    "name": "경상북도 영주시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-4bd5ae6b",
+    "name": "경상북도 영천시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-f6dee959",
+    "name": "경상북도 예천군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-61039d7b",
+    "name": "경상북도 울릉군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-eaed9147",
+    "name": "경상북도 울진군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "uiseong",
+    "name": "경상북도 의성군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-bb431c9a",
+    "name": "경상북도 청도군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-48c027c4",
+    "name": "경상북도 청송군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-83d96c40",
+    "name": "경상북도 칠곡군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-dd8174e0",
+    "name": "경상북도 포항시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-158b3b6f",
+    "name": "광주광역시 광산구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "gwangju-nam",
+    "name": "광주광역시 남구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "gwangju-dong",
+    "name": "광주광역시 동구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "gwangju-buk",
+    "name": "광주광역시 북구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "gwangju-seo",
+    "name": "광주광역시 서구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "daegu-nam",
+    "name": "대구광역시 남구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "dalseo",
+    "name": "대구광역시 달서구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "dalseong",
+    "name": "대구광역시 달성군",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "daegu-dong",
+    "name": "대구광역시 동구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "daegu-buk",
+    "name": "대구광역시 북구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "daegu-seo",
+    "name": "대구광역시 서구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "suseong",
+    "name": "대구광역시 수성구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "daegu-jung",
+    "name": "대구광역시 중구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-9e036358",
+    "name": "대전광역시 대덕구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "daejeon-dong",
+    "name": "대전광역시 동구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "daejeon-seo",
+    "name": "대전광역시 서구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-a9b7c08c",
+    "name": "대전광역시 유성구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "daejeon-jung",
+    "name": "대전광역시 중구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "busan-gangseo",
+    "name": "부산광역시 강서구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "geumjeong",
+    "name": "부산광역시 금정구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "gijang",
+    "name": "부산광역시 기장군",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "busan-nam",
+    "name": "부산광역시 남구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "busan-dong",
+    "name": "부산광역시 동구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "dongnae",
+    "name": "부산광역시 동래구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "busanjin",
+    "name": "부산광역시 부산진구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "busan-buk",
+    "name": "부산광역시 북구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "sasang",
+    "name": "부산광역시 사상구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "saha",
+    "name": "부산광역시 사하구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "busan-seo",
+    "name": "부산광역시 서구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "suyeong",
+    "name": "부산광역시 수영구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "yeonje",
+    "name": "부산광역시 연제구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "yeongdo",
+    "name": "부산광역시 영도구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "busan-jung",
+    "name": "부산광역시 중구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "haeundae",
+    "name": "부산광역시 해운대구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-ae6c62af",
+    "name": "서울특별시 강남구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-d0f58453",
+    "name": "서울특별시 강동구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-04a7482c",
+    "name": "서울특별시 강북구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "seoul-gangseo",
+    "name": "서울특별시 강서구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-9a433635",
+    "name": "서울특별시 관악구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-d76243a2",
+    "name": "서울특별시 광진구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-4a55418c",
+    "name": "서울특별시 구로구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-e6ca178e",
+    "name": "서울특별시 금천구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-d20b360a",
+    "name": "서울특별시 노원구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-5a46ba64",
+    "name": "서울특별시 도봉구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-a448f7cd",
+    "name": "서울특별시 동대문구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-f556b91a",
+    "name": "서울특별시 동작구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-d09d10af",
+    "name": "서울특별시 마포구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-110ca9ef",
+    "name": "서울특별시 서대문구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-ca5e44f9",
+    "name": "서울특별시 서초구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-e22a8304",
+    "name": "서울특별시 성동구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-89c6708b",
+    "name": "서울특별시 성북구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-dfd2730f",
+    "name": "서울특별시 송파구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-eedb36c3",
+    "name": "서울특별시 양천구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-e718bbb3",
+    "name": "서울특별시 영등포구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-7441e260",
+    "name": "서울특별시 용산구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-591a171c",
+    "name": "서울특별시 은평구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-ea0a522a",
+    "name": "서울특별시 종로구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "seoul-jung",
+    "name": "서울특별시 중구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-0f846169",
+    "name": "서울특별시 중랑구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-7aa16f18",
+    "name": "세종특별자치시 세종시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "ulsan-nam",
+    "name": "울산광역시 남구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "ulsan-dong",
+    "name": "울산광역시 동구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "ulsan-buk",
+    "name": "울산광역시 북구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "ulju",
+    "name": "울산광역시 울주군",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "ulsan-jung",
+    "name": "울산광역시 중구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-8924457f",
+    "name": "인천광역시 강화군",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-05f8c13b",
+    "name": "인천광역시 계양구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-85e8efbc",
+    "name": "인천광역시 남동구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "incheon-dong",
+    "name": "인천광역시 동구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-087c51ad",
+    "name": "인천광역시 미추홀구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-64552f63",
+    "name": "인천광역시 부평구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "incheon-seo",
+    "name": "인천광역시 서구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-e0c9fe4f",
+    "name": "인천광역시 연수구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-4a5c49f7",
+    "name": "인천광역시 옹진군",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "incheon-jung",
+    "name": "인천광역시 중구",
+    "logisticsCostIndex": 0.95,
+    "laborCostIndex": 1.06,
+    "landRentIndex": 1.12,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-af578a00",
+    "name": "전라남도 강진군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "goheung",
+    "name": "전라남도 고흥군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-4e8387b8",
+    "name": "전라남도 곡성군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-8d6456d7",
+    "name": "전라남도 광양시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-45573d02",
+    "name": "전라남도 구례군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-a5b6fed8",
+    "name": "전라남도 나주시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "damyang",
+    "name": "전라남도 담양군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-f5984e85",
+    "name": "전라남도 목포시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-729fdcf1",
+    "name": "전라남도 무안군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-9592a4e2",
+    "name": "전라남도 보성군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-82a689b6",
+    "name": "전라남도 순천시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-c4743305",
+    "name": "전라남도 신안군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-95161aa8",
+    "name": "전라남도 여수시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-404dad48",
+    "name": "전라남도 영광군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-5ca4d48f",
+    "name": "전라남도 영암군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-e99896e1",
+    "name": "전라남도 완도군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-126216ce",
+    "name": "전라남도 장성군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-66406aaf",
+    "name": "전라남도 장흥군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-9b2b8bbd",
+    "name": "전라남도 진도군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-6143b4e5",
+    "name": "전라남도 함평군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-bd7f24c8",
+    "name": "전라남도 해남군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-0730d063",
+    "name": "전라남도 화순군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-0e2f6ee1",
+    "name": "전라북도 고창군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-4a123f73",
+    "name": "전라북도 군산시",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-4c0960c5",
+    "name": "전라북도 김제시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-c1af5e6a",
+    "name": "전라북도 남원시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-f675a41a",
+    "name": "전라북도 무주군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-44ed0182",
+    "name": "전라북도 부안군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-86085974",
+    "name": "전라북도 순창군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-cb833dea",
+    "name": "전라북도 완주군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-9a3d91a4",
+    "name": "전라북도 익산시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-bbf9945f",
+    "name": "전라북도 임실군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "jangsu",
+    "name": "전라북도 장수군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-f718bd23",
+    "name": "전라북도 전주시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-1916ec9a",
+    "name": "전라북도 정읍시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-4153c7bf",
+    "name": "전라북도 진안군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "seogwipo",
+    "name": "제주특별자치도 서귀포시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "jeju",
+    "name": "제주특별자치도 제주시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.02,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "온난",
+      "시설재배",
+      "일조량 양호"
+    ],
+    "risks": [
+      "여름 고온",
+      "시설 냉방비"
+    ]
+  },
+  {
+    "id": "region-fc6b740b",
+    "name": "충청남도 계룡시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-37754340",
+    "name": "충청남도 공주시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-4fbdd862",
+    "name": "충청남도 금산군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "nonsan",
+    "name": "충청남도 논산시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-0a5ea572",
+    "name": "충청남도 당진시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-5f9a429e",
+    "name": "충청남도 보령시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-800fac73",
+    "name": "충청남도 부여군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-14e4a203",
+    "name": "충청남도 서산시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-3a5219c2",
+    "name": "충청남도 서천군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-6207ca95",
+    "name": "충청남도 아산시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-3027225e",
+    "name": "충청남도 예산군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-1aaaf793",
+    "name": "충청남도 천안시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-1d4b6a13",
+    "name": "충청남도 청양군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-d2dac2b8",
+    "name": "충청남도 태안군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-ae22a02a",
+    "name": "충청남도 홍성군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "goesan",
+    "name": "충청북도 괴산군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-90052dd0",
+    "name": "충청북도 단양군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-2c9184bb",
+    "name": "충청북도 보은군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-2a7df98a",
+    "name": "충청북도 영동군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-c70f54e5",
+    "name": "충청북도 옥천군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-8e58f0e5",
+    "name": "충청북도 음성군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-b6186d1e",
+    "name": "충청북도 제천시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-c295ab93",
+    "name": "충청북도 증평군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-0932b38b",
+    "name": "충청북도 진천군",
+    "logisticsCostIndex": 1.03,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 0.96,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-2777fc29",
+    "name": "충청북도 청주시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
+  },
+  {
+    "id": "region-98518f9c",
+    "name": "충청북도 충주시",
+    "logisticsCostIndex": 1.0,
+    "laborCostIndex": 1.0,
+    "landRentIndex": 1.08,
+    "climateTags": [
+      "내륙",
+      "노지재배",
+      "일교차"
+    ],
+    "risks": [
+      "겨울 한파",
+      "가격 변동"
+    ]
   }
 ]

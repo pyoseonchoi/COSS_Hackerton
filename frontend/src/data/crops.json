@@ -1,57 +1,694 @@
 [
   {
-    "id": "strawberry",
+    "id": "strawberry-hydroponic",
+    "name": "딸기",
+    "type": "시설하우스/수경",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 16,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "높음",
+    "summary": "시설 관리와 초기투자 부담이 있지만 단위면적당 수익성이 높은 편입니다.",
+    "fitTags": [
+      "온난",
+      "딸기",
+      "시설"
+    ]
+  },
+  {
+    "id": "blueberry-open-field",
+    "name": "블루베리",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 4,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "과수",
+      "노지"
+    ]
+  },
+  {
+    "id": "citrus-open-field",
+    "name": "감귤",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 9,
+    "defaultLossRate": 0.07,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "과수",
+      "노지"
+    ]
+  },
+  {
+    "id": "apple-open-field",
+    "name": "사과",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 8,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "과수",
+      "노지"
+    ]
+  },
+  {
+    "id": "strawberry-soil",
     "name": "딸기",
     "type": "시설하우스",
     "productionCycleMonths": 12,
     "yieldPerPyeong": 16,
     "defaultLossRate": 0.08,
     "laborIntensity": "높음",
-    "summary": "고소득 작물이지만 수확기 노동과 시설 관리 부담이 큽니다.",
-    "fitTags": ["온난", "딸기", "시설재배"]
+    "summary": "시설 관리와 초기투자 부담이 있지만 단위면적당 수익성이 높은 편입니다.",
+    "fitTags": [
+      "온난",
+      "딸기",
+      "시설"
+    ]
   },
   {
-    "id": "tomato",
+    "id": "tomato-hydroponic",
     "name": "토마토",
+    "type": "시설하우스/수경",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 28,
+    "defaultLossRate": 0.07,
+    "laborIntensity": "보통",
+    "summary": "시설 관리와 초기투자 부담이 있지만 단위면적당 수익성이 높은 편입니다.",
+    "fitTags": [
+      "온난",
+      "토마토",
+      "시설"
+    ]
+  },
+  {
+    "id": "hallabong-open-field",
+    "name": "한라봉",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 8,
+    "defaultLossRate": 0.07,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "과수",
+      "노지"
+    ]
+  },
+  {
+    "id": "leafy-greens-facility",
+    "name": "상추",
     "type": "시설하우스",
     "productionCycleMonths": 12,
-    "yieldPerPyeong": 32,
+    "yieldPerPyeong": 22,
+    "defaultLossRate": 0.09,
+    "laborIntensity": "보통",
+    "summary": "시설 관리와 초기투자 부담이 있지만 단위면적당 수익성이 높은 편입니다.",
+    "fitTags": [
+      "온난",
+      "엽채류",
+      "시설"
+    ]
+  },
+  {
+    "id": "grape-open-field",
+    "name": "포도",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 7,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "과수",
+      "노지"
+    ]
+  },
+  {
+    "id": "persimmon-open-field",
+    "name": "단감",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 8,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "과수",
+      "노지"
+    ]
+  },
+  {
+    "id": "eggplant-facility",
+    "name": "가지",
+    "type": "시설하우스",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 20,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "보통",
+    "summary": "시설 관리와 초기투자 부담이 있지만 단위면적당 수익성이 높은 편입니다.",
+    "fitTags": [
+      "온난",
+      "가지",
+      "시설"
+    ]
+  },
+  {
+    "id": "cucumber-facility",
+    "name": "오이",
+    "type": "시설하우스",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 30,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "보통",
+    "summary": "시설 관리와 초기투자 부담이 있지만 단위면적당 수익성이 높은 편입니다.",
+    "fitTags": [
+      "온난",
+      "오이",
+      "시설"
+    ]
+  },
+  {
+    "id": "cherry-open-field",
+    "name": "체리",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 3,
+    "defaultLossRate": 0.1,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "과수",
+      "노지"
+    ]
+  },
+  {
+    "id": "pear-open-field",
+    "name": "배",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 9,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "과수",
+      "노지"
+    ]
+  },
+  {
+    "id": "garlic-chives-facility",
+    "name": "부추",
+    "type": "시설하우스",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 13,
+    "defaultLossRate": 0.09,
+    "laborIntensity": "보통",
+    "summary": "시설 관리와 초기투자 부담이 있지만 단위면적당 수익성이 높은 편입니다.",
+    "fitTags": [
+      "온난",
+      "엽채류",
+      "시설"
+    ]
+  },
+  {
+    "id": "peach-open-field",
+    "name": "복숭아",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 7,
+    "defaultLossRate": 0.09,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "과수",
+      "노지"
+    ]
+  },
+  {
+    "id": "paprika-facility",
+    "name": "파프리카",
+    "type": "시설하우스",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 24,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "높음",
+    "summary": "시설 관리와 초기투자 부담이 있지만 단위면적당 수익성이 높은 편입니다.",
+    "fitTags": [
+      "온난",
+      "파프리카",
+      "시설"
+    ]
+  },
+  {
+    "id": "pepper-facility",
+    "name": "고추",
+    "type": "시설하우스",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 7,
     "defaultLossRate": 0.1,
     "laborIntensity": "높음",
-    "summary": "판로가 잡히면 안정적인 매출을 기대할 수 있는 시설 작물입니다.",
-    "fitTags": ["온난", "시설재배", "일조량 양호"]
+    "summary": "시설 관리와 초기투자 부담이 있지만 단위면적당 수익성이 높은 편입니다.",
+    "fitTags": [
+      "온난",
+      "고추",
+      "시설"
+    ]
   },
   {
-    "id": "pepper",
-    "name": "고추",
-    "type": "노지재배",
+    "id": "fig-open-field",
+    "name": "무화과",
+    "type": "노지",
     "productionCycleMonths": 12,
-    "yieldPerPyeong": 5.4,
-    "defaultLossRate": 0.16,
-    "laborIntensity": "높음",
-    "summary": "초기 진입비는 낮지만 같은 소득을 만들려면 넓은 면적이 필요합니다.",
-    "fitTags": ["내륙", "고추", "노지재배"]
-  },
-  {
-    "id": "mushroom",
-    "name": "버섯",
-    "type": "시설재배",
-    "productionCycleMonths": 3,
-    "yieldPerPyeong": 34,
-    "defaultLossRate": 0.11,
+    "yieldPerPyeong": 5,
+    "defaultLossRate": 0.09,
     "laborIntensity": "보통",
-    "summary": "면적 대비 수익성은 높지만 온습도 관리와 판로 확보가 중요합니다.",
-    "fitTags": ["서늘함", "내륙"]
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "과수",
+      "노지"
+    ]
   },
   {
-    "id": "leafy-greens",
-    "name": "엽채류",
-    "type": "스마트팜",
-    "productionCycleMonths": 2,
-    "yieldPerPyeong": 22,
+    "id": "mushroom-specialty",
+    "name": "느타리버섯",
+    "type": "특용",
+    "productionCycleMonths": 18,
+    "yieldPerPyeong": 45,
     "defaultLossRate": 0.06,
     "laborIntensity": "보통",
-    "summary": "생산 안정성은 좋지만 초기 자본과 운영 기술 요구치가 높습니다.",
-    "fitTags": ["시설재배", "일조량 양호"]
+    "summary": "판로와 품질 관리에 따라 수익 편차가 커질 수 있는 특용 작목입니다.",
+    "fitTags": [
+      "버섯",
+      "특용"
+    ]
+  },
+  {
+    "id": "rose-facility",
+    "name": "장미",
+    "type": "시설하우스",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 1,
+    "defaultLossRate": 0.12,
+    "laborIntensity": "높음",
+    "summary": "시설 관리와 초기투자 부담이 있지만 단위면적당 수익성이 높은 편입니다.",
+    "fitTags": [
+      "온난",
+      "화훼",
+      "시설"
+    ]
+  },
+  {
+    "id": "watermelon-facility",
+    "name": "수박",
+    "type": "시설하우스",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 18,
+    "defaultLossRate": 0.1,
+    "laborIntensity": "보통",
+    "summary": "시설 관리와 초기투자 부담이 있지만 단위면적당 수익성이 높은 편입니다.",
+    "fitTags": [
+      "온난",
+      "과채류",
+      "시설"
+    ]
+  },
+  {
+    "id": "grape-facility",
+    "name": "포도",
+    "type": "시설하우스",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 7,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "보통",
+    "summary": "시설 관리와 초기투자 부담이 있지만 단위면적당 수익성이 높은 편입니다.",
+    "fitTags": [
+      "온난",
+      "과수",
+      "시설"
+    ]
+  },
+  {
+    "id": "spinach-facility",
+    "name": "시금치",
+    "type": "시설하우스",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 12,
+    "defaultLossRate": 0.1,
+    "laborIntensity": "보통",
+    "summary": "시설 관리와 초기투자 부담이 있지만 단위면적당 수익성이 높은 편입니다.",
+    "fitTags": [
+      "온난",
+      "엽채류",
+      "시설"
+    ]
+  },
+  {
+    "id": "shiitake-specialty",
+    "name": "표고버섯",
+    "type": "특용",
+    "productionCycleMonths": 18,
+    "yieldPerPyeong": 18,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "보통",
+    "summary": "판로와 품질 관리에 따라 수익 편차가 커질 수 있는 특용 작목입니다.",
+    "fitTags": [
+      "버섯",
+      "특용"
+    ]
+  },
+  {
+    "id": "yuja-specialty",
+    "name": "유자",
+    "type": "특용",
+    "productionCycleMonths": 18,
+    "yieldPerPyeong": 7,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "보통",
+    "summary": "판로와 품질 관리에 따라 수익 편차가 커질 수 있는 특용 작목입니다.",
+    "fitTags": [
+      "특용"
+    ]
+  },
+  {
+    "id": "garlic-open-field",
+    "name": "마늘",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 4,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "노지"
+    ]
+  },
+  {
+    "id": "plum-open-field",
+    "name": "자두",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 6,
+    "defaultLossRate": 0.09,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "과수",
+      "노지"
+    ]
+  },
+  {
+    "id": "korean-melon-facility",
+    "name": "참외",
+    "type": "시설하우스",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 22,
+    "defaultLossRate": 0.09,
+    "laborIntensity": "보통",
+    "summary": "시설 관리와 초기투자 부담이 있지만 단위면적당 수익성이 높은 편입니다.",
+    "fitTags": [
+      "온난",
+      "과채류",
+      "시설"
+    ]
+  },
+  {
+    "id": "green-tea-specialty",
+    "name": "녹차",
+    "type": "특용",
+    "productionCycleMonths": 18,
+    "yieldPerPyeong": 3,
+    "defaultLossRate": 0.07,
+    "laborIntensity": "낮음",
+    "summary": "판로와 품질 관리에 따라 수익 편차가 커질 수 있는 특용 작목입니다.",
+    "fitTags": [
+      "특용"
+    ]
+  },
+  {
+    "id": "black-raspberry-specialty",
+    "name": "복분자",
+    "type": "특용",
+    "productionCycleMonths": 18,
+    "yieldPerPyeong": 4,
+    "defaultLossRate": 0.1,
+    "laborIntensity": "보통",
+    "summary": "판로와 품질 관리에 따라 수익 편차가 커질 수 있는 특용 작목입니다.",
+    "fitTags": [
+      "특용"
+    ]
+  },
+  {
+    "id": "cucumber-open-field",
+    "name": "오이",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 30,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "오이",
+      "노지"
+    ]
+  },
+  {
+    "id": "melon-facility",
+    "name": "멜론",
+    "type": "시설하우스",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 20,
+    "defaultLossRate": 0.09,
+    "laborIntensity": "보통",
+    "summary": "시설 관리와 초기투자 부담이 있지만 단위면적당 수익성이 높은 편입니다.",
+    "fitTags": [
+      "온난",
+      "과채류",
+      "시설"
+    ]
+  },
+  {
+    "id": "watermelon-open-field",
+    "name": "수박",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 18,
+    "defaultLossRate": 0.1,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "과채류",
+      "노지"
+    ]
+  },
+  {
+    "id": "medicinal-herbs-specialty",
+    "name": "약용식물",
+    "type": "특용",
+    "productionCycleMonths": 18,
+    "yieldPerPyeong": 3,
+    "defaultLossRate": 0.1,
+    "laborIntensity": "보통",
+    "summary": "판로와 품질 관리에 따라 수익 편차가 커질 수 있는 특용 작목입니다.",
+    "fitTags": [
+      "특용"
+    ]
+  },
+  {
+    "id": "onion-open-field",
+    "name": "양파",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 7,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "노지"
+    ]
+  },
+  {
+    "id": "omija-specialty",
+    "name": "오미자",
+    "type": "특용",
+    "productionCycleMonths": 18,
+    "yieldPerPyeong": 3,
+    "defaultLossRate": 0.1,
+    "laborIntensity": "보통",
+    "summary": "판로와 품질 관리에 따라 수익 편차가 커질 수 있는 특용 작목입니다.",
+    "fitTags": [
+      "특용"
+    ]
+  },
+  {
+    "id": "sweet-potato-open-field",
+    "name": "고구마",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 8,
+    "defaultLossRate": 0.08,
+    "laborIntensity": "낮음",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "노지"
+    ]
+  },
+  {
+    "id": "ginseng-specialty",
+    "name": "인삼",
+    "type": "특용",
+    "productionCycleMonths": 18,
+    "yieldPerPyeong": 2,
+    "defaultLossRate": 0.1,
+    "laborIntensity": "높음",
+    "summary": "판로와 품질 관리에 따라 수익 편차가 커질 수 있는 특용 작목입니다.",
+    "fitTags": [
+      "특용"
+    ]
+  },
+  {
+    "id": "cabbage-open-field",
+    "name": "배추",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 9,
+    "defaultLossRate": 0.1,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "노지"
+    ]
+  },
+  {
+    "id": "crop-56c5af5b-open-field",
+    "name": "무",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 10,
+    "defaultLossRate": 0.09,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "무",
+      "노지"
+    ]
+  },
+  {
+    "id": "crop-136539bc-open-field",
+    "name": "옥수수",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 10,
+    "defaultLossRate": 0.09,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "옥수수",
+      "노지"
+    ]
+  },
+  {
+    "id": "crop-52dcc82d-open-field",
+    "name": "감자",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 10,
+    "defaultLossRate": 0.09,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "감자",
+      "노지"
+    ]
+  },
+  {
+    "id": "crop-d80450b7-open-field",
+    "name": "들깨",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 10,
+    "defaultLossRate": 0.09,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "들깨",
+      "노지"
+    ]
+  },
+  {
+    "id": "crop-b7f28eb2-open-field",
+    "name": "콩",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 10,
+    "defaultLossRate": 0.09,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "콩",
+      "노지"
+    ]
+  },
+  {
+    "id": "crop-8ca534db-open-field",
+    "name": "쌀",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 10,
+    "defaultLossRate": 0.09,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "쌀",
+      "노지"
+    ]
+  },
+  {
+    "id": "crop-faa27f14-open-field",
+    "name": "참깨",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 10,
+    "defaultLossRate": 0.09,
+    "laborIntensity": "보통",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "참깨",
+      "노지"
+    ]
+  },
+  {
+    "id": "pepper-open-field",
+    "name": "고추",
+    "type": "노지",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 7,
+    "defaultLossRate": 0.1,
+    "laborIntensity": "높음",
+    "summary": "초기투자 부담은 낮지만 기상과 가격 변동에 따른 리스크 관리가 중요합니다.",
+    "fitTags": [
+      "고추",
+      "노지"
+    ]
+  },
+  {
+    "id": "crop-3efed12c-hydroponic",
+    "name": "방울토마토",
+    "type": "시설하우스/수경",
+    "productionCycleMonths": 12,
+    "yieldPerPyeong": 10,
+    "defaultLossRate": 0.09,
+    "laborIntensity": "보통",
+    "summary": "시설 관리와 초기투자 부담이 있지만 단위면적당 수익성이 높은 편입니다.",
+    "fitTags": [
+      "온난",
+      "방울토마토",
+      "시설"
+    ]
   }
 ]
