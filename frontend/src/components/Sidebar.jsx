@@ -36,10 +36,6 @@ export function Sidebar({ activeSection, onSectionChange }) {
         })}
       </nav>
 
-      <div className="sidebarFooter">
-        <strong>해커톤 시연 가이드</strong>
-        <span>소득 대체 계산과 원본 입지 진단 흐름을 하나의 React 대시보드로 통합했습니다.</span>
-      </div>
     </aside>
   );
 }

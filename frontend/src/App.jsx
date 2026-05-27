@@ -304,7 +304,7 @@ function PreferenceSection({ preferences, recommendedCandidate, onPreferenceChan
       <SectionHeader
         eyebrow="Step 02"
         title="개인 맞춤형 입지 선호도 설정"
-        description="원본 UI의 8대 입지 요인을 React 상태로 옮겼습니다. 값은 후보지 추천 점수 보정에 사용됩니다."
+        description="입지 요인별 중요도를 설정하여 나에게 꼭 맞는 농지를 추천받으세요."
       />
 
       <div className="twoColumn">
@@ -600,7 +600,7 @@ function DroneSection({ selectedCandidate, droneForm, analysisResult, analysisEr
       <SectionHeader
         eyebrow="Step 04"
         title="2차 미시 드론 영상 분석"
-        description="RGB/열화상 업로드 UI를 React 폼으로 옮겼습니다. 분석 API가 준비되지 않아도 화면이 깨지지 않습니다."
+        description="드론으로 촬영된 RGB 및 열화상 이미지를 업로드하여 정밀 분석을 수행합니다."
       />
 
       <div className="twoColumn">
